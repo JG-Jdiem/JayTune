@@ -1,8 +1,8 @@
-package app.vitune.providers.github.requests
+package app.jaytune.providers.github.requests
 
-import app.vitune.providers.github.GitHub
-import app.vitune.providers.github.models.Release
-import app.vitune.providers.utils.runCatchingCancellable
+import app.jaytune.providers.github.GitHub
+import app.jaytune.providers.github.models.Release
+import app.jaytune.providers.utils.runCatchingCancellable
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 

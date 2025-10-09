@@ -1,4 +1,4 @@
-package app.vitune.providers.translate
+package app.jaytune.providers.translate
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO

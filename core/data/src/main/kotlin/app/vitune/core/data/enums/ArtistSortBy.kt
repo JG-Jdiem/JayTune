@@ -1,4 +1,4 @@
-package app.vitune.core.data.enums
+package app.jaytune.core.data.enums
 
 enum class ArtistSortBy {
     Name,

@@ -1,4 +1,4 @@
-package app.vitune.core.ui
+package app.jaytune.core.ui
 
 import androidx.compose.material.ripple.RippleAlpha
 import androidx.compose.material3.ExperimentalMaterial3Api

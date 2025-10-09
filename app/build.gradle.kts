@@ -29,7 +29,7 @@ android {
         multiDexEnabled = true
 
         ndk {
-            abiFilters += listOf("arm64-v8a", "x86_64")
+            abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86_64")
         }
     }
 
@@ -53,14 +53,14 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-DEBUG"
-            manifestPlaceholders["appName"] = "ViTune Debug"
+            manifestPlaceholders["appName"] = "JayTune Debug"
         }
 
         release {
             versionNameSuffix = "-RELEASE"
             isMinifyEnabled = true
             isShrinkResources = true
-            manifestPlaceholders["appName"] = "ViTune"
+            manifestPlaceholders["appName"] = "JayTune"
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -73,7 +73,7 @@ android {
 
             applicationIdSuffix = ".nightly"
             versionNameSuffix = "-NIGHTLY"
-            manifestPlaceholders["appName"] = "ViTune Nightly"
+            manifestPlaceholders["appName"] = "JayTune Nightly"
             signingConfig = signingConfigs.findByName("ci")
         }
     }
@@ -129,7 +129,7 @@ composeCompiler {
 
 chaquopy {
     defaultConfig {
-        version = "3.13"
+        version = "3.11"
         pip {
             install("yt-dlp")
             install("pip")

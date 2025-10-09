@@ -1,4 +1,4 @@
-package app.vitune.compose.reordering
+package app.jaytune.compose.reordering
 
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.ui.Modifier

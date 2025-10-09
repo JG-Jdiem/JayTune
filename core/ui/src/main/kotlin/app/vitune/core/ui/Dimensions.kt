@@ -1,4 +1,4 @@
-package app.vitune.core.ui
+package app.jaytune.core.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalConfiguration

@@ -1,4 +1,4 @@
-package app.vitune.core.ui.utils
+package app.jaytune.core.ui.utils
 
 import android.os.Parcelable
 import androidx.compose.runtime.saveable.Saver

@@ -1,4 +1,4 @@
-package app.vitune.compose.preferences
+package app.jaytune.compose.preferences
 
 import android.app.Application
 import android.content.Context

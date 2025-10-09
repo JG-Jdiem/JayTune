@@ -1,6 +1,6 @@
-package app.vitune.providers.innertube.models
+package app.jaytune.providers.innertube.models
 
-import app.vitune.providers.innertube.Innertube
+import app.jaytune.providers.innertube.Innertube
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 

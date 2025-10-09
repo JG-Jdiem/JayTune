@@ -1,4 +1,4 @@
-package app.vitune.providers.innertube.models
+package app.jaytune.providers.innertube.models
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable

@@ -1,8 +1,8 @@
-package app.vitune.providers.innertube.utils
+package app.jaytune.providers.innertube.utils
 
-import app.vitune.providers.innertube.Innertube
-import app.vitune.providers.innertube.models.PlaylistPanelVideoRenderer
-import app.vitune.providers.innertube.models.isExplicit
+import app.jaytune.providers.innertube.Innertube
+import app.jaytune.providers.innertube.models.PlaylistPanelVideoRenderer
+import app.jaytune.providers.innertube.models.isExplicit
 
 fun Innertube.SongItem.Companion.from(renderer: PlaylistPanelVideoRenderer) = Innertube.SongItem(
     info = Innertube.Info(

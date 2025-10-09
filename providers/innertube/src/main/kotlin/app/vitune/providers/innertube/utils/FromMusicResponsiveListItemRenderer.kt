@@ -1,9 +1,9 @@
-package app.vitune.providers.innertube.utils
+package app.jaytune.providers.innertube.utils
 
-import app.vitune.providers.innertube.Innertube
-import app.vitune.providers.innertube.models.MusicResponsiveListItemRenderer
-import app.vitune.providers.innertube.models.NavigationEndpoint
-import app.vitune.providers.innertube.models.isExplicit
+import app.jaytune.providers.innertube.Innertube
+import app.jaytune.providers.innertube.models.MusicResponsiveListItemRenderer
+import app.jaytune.providers.innertube.models.NavigationEndpoint
+import app.jaytune.providers.innertube.models.isExplicit
 
 fun Innertube.SongItem.Companion.from(renderer: MusicResponsiveListItemRenderer) =
     Innertube.SongItem(

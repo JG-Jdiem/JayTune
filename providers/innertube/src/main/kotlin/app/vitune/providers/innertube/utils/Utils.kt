@@ -1,7 +1,7 @@
-package app.vitune.providers.innertube.utils
+package app.jaytune.providers.innertube.utils
 
-import app.vitune.providers.innertube.Innertube
-import app.vitune.providers.innertube.models.SectionListRenderer
+import app.jaytune.providers.innertube.Innertube
+import app.jaytune.providers.innertube.models.SectionListRenderer
 
 private val SectionListRenderer.Content.title: String? get() {
     val title = musicCarouselShelfRenderer

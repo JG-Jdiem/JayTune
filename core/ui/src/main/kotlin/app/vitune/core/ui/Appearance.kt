@@ -1,4 +1,4 @@
-package app.vitune.core.ui
+package app.jaytune.core.ui
 
 import android.app.Activity
 import android.graphics.Bitmap
@@ -15,10 +15,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.Dp
 import androidx.core.view.WindowCompat
-import app.vitune.core.ui.utils.isAtLeastAndroid6
-import app.vitune.core.ui.utils.isAtLeastAndroid8
-import app.vitune.core.ui.utils.isCompositionLaunched
-import app.vitune.core.ui.utils.roundedShape
+import app.jaytune.core.ui.utils.isAtLeastAndroid6
+import app.jaytune.core.ui.utils.isAtLeastAndroid8
+import app.jaytune.core.ui.utils.isCompositionLaunched
+import app.jaytune.core.ui.utils.roundedShape
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.parcelize.IgnoredOnParcel

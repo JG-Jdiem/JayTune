@@ -1,6 +1,6 @@
 @file:Suppress("NOTHING_TO_INLINE")
 
-package app.vitune.core.ui.utils
+package app.jaytune.core.ui.utils
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalDensity

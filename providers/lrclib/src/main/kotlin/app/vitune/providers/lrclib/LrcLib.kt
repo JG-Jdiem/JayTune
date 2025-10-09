@@ -1,8 +1,8 @@
-package app.vitune.providers.lrclib
+package app.jaytune.providers.lrclib
 
-import app.vitune.providers.lrclib.models.Track
-import app.vitune.providers.lrclib.models.bestMatchingFor
-import app.vitune.providers.utils.runCatchingCancellable
+import app.jaytune.providers.lrclib.models.Track
+import app.jaytune.providers.lrclib.models.bestMatchingFor
+import app.jaytune.providers.utils.runCatchingCancellable
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO

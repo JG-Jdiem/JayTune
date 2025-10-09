@@ -1,4 +1,4 @@
-package app.vitune.compose.reordering
+package app.jaytune.compose.reordering
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationVector

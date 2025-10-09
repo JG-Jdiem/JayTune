@@ -1,6 +1,6 @@
-package app.vitune.providers.innertube.models.bodies
+package app.jaytune.providers.innertube.models.bodies
 
-import app.vitune.providers.innertube.models.Context
+import app.jaytune.providers.innertube.models.Context
 import kotlinx.serialization.Serializable
 
 @Serializable
