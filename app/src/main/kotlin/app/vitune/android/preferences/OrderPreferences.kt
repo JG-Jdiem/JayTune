@@ -1,11 +1,11 @@
-package app.vitune.android.preferences
+package app.jaytune.android.preferences
 
-import app.vitune.android.GlobalPreferencesHolder
-import app.vitune.core.data.enums.AlbumSortBy
-import app.vitune.core.data.enums.ArtistSortBy
-import app.vitune.core.data.enums.PlaylistSortBy
-import app.vitune.core.data.enums.SongSortBy
-import app.vitune.core.data.enums.SortOrder
+import app.jaytune.android.GlobalPreferencesHolder
+import app.jaytune.core.data.enums.AlbumSortBy
+import app.jaytune.core.data.enums.ArtistSortBy
+import app.jaytune.core.data.enums.PlaylistSortBy
+import app.jaytune.core.data.enums.SongSortBy
+import app.jaytune.core.data.enums.SortOrder
 
 object OrderPreferences : GlobalPreferencesHolder() {
     var songSortOrder by enum(SortOrder.Descending)

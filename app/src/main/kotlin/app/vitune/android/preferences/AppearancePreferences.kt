@@ -1,13 +1,13 @@
-package app.vitune.android.preferences
+package app.jaytune.android.preferences
 
-import app.vitune.android.GlobalPreferencesHolder
-import app.vitune.android.preferences.OldPreferences.ColorPaletteMode
-import app.vitune.android.preferences.OldPreferences.ColorPaletteName
-import app.vitune.core.ui.BuiltInFontFamily
-import app.vitune.core.ui.ColorMode
-import app.vitune.core.ui.ColorSource
-import app.vitune.core.ui.Darkness
-import app.vitune.core.ui.ThumbnailRoundness
+import app.jaytune.android.GlobalPreferencesHolder
+import app.jaytune.android.preferences.OldPreferences.ColorPaletteMode
+import app.jaytune.android.preferences.OldPreferences.ColorPaletteName
+import app.jaytune.core.ui.BuiltInFontFamily
+import app.jaytune.core.ui.ColorMode
+import app.jaytune.core.ui.ColorSource
+import app.jaytune.core.ui.Darkness
+import app.jaytune.core.ui.ThumbnailRoundness
 
 object AppearancePreferences : GlobalPreferencesHolder() {
     var colorSource by enum(

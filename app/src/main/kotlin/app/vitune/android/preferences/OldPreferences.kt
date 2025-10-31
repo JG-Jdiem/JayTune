@@ -1,6 +1,6 @@
-package app.vitune.android.preferences
+package app.jaytune.android.preferences
 
-import app.vitune.android.GlobalPreferencesHolder
+import app.jaytune.android.GlobalPreferencesHolder
 
 internal object OldPreferences : GlobalPreferencesHolder() {
     val oldColorPaletteName by enum(ColorPaletteName.Dynamic, "colorPaletteName")

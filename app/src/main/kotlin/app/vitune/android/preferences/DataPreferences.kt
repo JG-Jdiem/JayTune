@@ -1,12 +1,12 @@
-package app.vitune.android.preferences
+package app.jaytune.android.preferences
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import app.vitune.android.GlobalPreferencesHolder
-import app.vitune.android.R
-import app.vitune.core.data.enums.CoilDiskCacheSize
-import app.vitune.core.data.enums.ExoPlayerDiskCacheSize
-import app.vitune.providers.innertube.Innertube
+import app.jaytune.android.GlobalPreferencesHolder
+import app.jaytune.android.R
+import app.jaytune.core.data.enums.CoilDiskCacheSize
+import app.jaytune.core.data.enums.ExoPlayerDiskCacheSize
+import app.jaytune.providers.innertube.Innertube
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours

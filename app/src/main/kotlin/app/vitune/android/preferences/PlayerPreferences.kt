@@ -1,10 +1,10 @@
-package app.vitune.android.preferences
+package app.jaytune.android.preferences
 
 import android.media.audiofx.PresetReverb
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import app.vitune.android.GlobalPreferencesHolder
-import app.vitune.android.R
+import app.jaytune.android.GlobalPreferencesHolder
+import app.jaytune.android.R
 
 object PlayerPreferences : GlobalPreferencesHolder() {
     val isInvincibilityEnabledProperty = boolean(false)

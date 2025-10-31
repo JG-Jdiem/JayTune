@@ -1,11 +1,11 @@
-package app.vitune.android.preferences
+package app.jaytune.android.preferences
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.SnapshotMutationPolicy
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import app.vitune.android.GlobalPreferencesHolder
+import app.jaytune.android.GlobalPreferencesHolder
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
