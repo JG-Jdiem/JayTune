@@ -1,6 +1,6 @@
-package app.vitune.core.data.enums
+package app.jaytune.core.data.enums
 
-import app.vitune.core.data.utils.mb
+import app.jaytune.core.data.utils.mb
 
 @Suppress("unused", "EnumEntryName")
 enum class CoilDiskCacheSize(val bytes: Long) {

@@ -1,4 +1,4 @@
-package app.vitune.core.data.utils
+package app.jaytune.core.data.utils
 
 inline val String.version
     get() = Version(
