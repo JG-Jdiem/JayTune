@@ -1,12 +1,12 @@
-package app.vitune.providers.piped
+package app.jaytune.providers.piped
 
-import app.vitune.providers.piped.models.CreatedPlaylist
-import app.vitune.providers.piped.models.Instance
-import app.vitune.providers.piped.models.Playlist
-import app.vitune.providers.piped.models.PlaylistPreview
-import app.vitune.providers.piped.models.Session
-import app.vitune.providers.piped.models.authenticatedWith
-import app.vitune.providers.utils.runCatchingCancellable
+import app.jaytune.providers.piped.models.CreatedPlaylist
+import app.jaytune.providers.piped.models.Instance
+import app.jaytune.providers.piped.models.Playlist
+import app.jaytune.providers.piped.models.PlaylistPreview
+import app.jaytune.providers.piped.models.Session
+import app.jaytune.providers.piped.models.authenticatedWith
+import app.jaytune.providers.utils.runCatchingCancellable
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO

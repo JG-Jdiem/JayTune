@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalTime::class)
 
-package app.vitune.providers.piped.models
+package app.jaytune.providers.piped.models
 
 import io.ktor.http.Url
 import kotlinx.datetime.LocalDateTime
