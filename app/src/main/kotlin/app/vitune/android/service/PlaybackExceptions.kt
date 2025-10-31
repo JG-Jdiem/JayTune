@@ -1,6 +1,6 @@
 @file:OptIn(UnstableApi::class)
 
-package app.vitune.android.service
+package app.jaytune.android.service
 
 import androidx.annotation.OptIn
 import androidx.media3.common.PlaybackException

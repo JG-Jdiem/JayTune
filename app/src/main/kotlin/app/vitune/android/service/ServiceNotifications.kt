@@ -1,4 +1,4 @@
-package app.vitune.android.service
+package app.jaytune.android.service
 
 import android.app.Application
 import android.app.Notification
@@ -15,7 +15,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.getSystemService
 import androidx.media3.common.util.NotificationUtil.Importance
 import androidx.media3.common.util.UnstableApi
-import app.vitune.android.R
+import app.jaytune.android.R
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.math.absoluteValue
 import kotlin.properties.PropertyDelegateProvider

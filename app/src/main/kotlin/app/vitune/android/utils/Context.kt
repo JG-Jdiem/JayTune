@@ -1,4 +1,4 @@
-package app.vitune.android.utils
+package app.jaytune.android.utils
 
 import android.app.Activity
 import android.app.PendingIntent
@@ -20,9 +20,9 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.offline.DownloadRequest
 import androidx.media3.exoplayer.offline.DownloadService
 import androidx.media3.exoplayer.offline.DownloadService.sendAddDownload
-import app.vitune.android.BuildConfig
-import app.vitune.core.ui.utils.isAtLeastAndroid11
-import app.vitune.core.ui.utils.isAtLeastAndroid6
+import app.jaytune.android.BuildConfig
+import app.jaytune.core.ui.utils.isAtLeastAndroid11
+import app.jaytune.core.ui.utils.isAtLeastAndroid6
 
 inline fun <reified T> Context.intent(): Intent = Intent(this@Context, T::class.java)
 

@@ -1,4 +1,4 @@
-package app.vitune.android.utils
+package app.jaytune.android.utils
 
 import android.content.ContentResolver
 import android.content.ContentUris
@@ -15,7 +15,7 @@ import android.provider.MediaStore.Audio.Media.DISPLAY_NAME
 import android.provider.MediaStore.Audio.Media.DURATION
 import android.provider.MediaStore.Audio.Media.IS_MUSIC
 import android.provider.MediaStore.Audio.Media._ID
-import app.vitune.core.ui.utils.isAtLeastAndroid10
+import app.jaytune.core.ui.utils.isAtLeastAndroid10
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 

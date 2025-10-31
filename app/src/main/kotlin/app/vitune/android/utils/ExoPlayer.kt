@@ -1,6 +1,6 @@
 @file:OptIn(UnstableApi::class)
 
-package app.vitune.android.utils
+package app.jaytune.android.utils
 
 import android.content.Context
 import android.util.Log

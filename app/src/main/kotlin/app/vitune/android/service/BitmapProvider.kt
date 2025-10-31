@@ -1,4 +1,4 @@
-package app.vitune.android.service
+package app.jaytune.android.service
 
 import android.content.Context
 import android.content.res.Configuration
@@ -6,7 +6,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import androidx.core.graphics.applyCanvas
 import androidx.core.graphics.createBitmap
-import app.vitune.android.utils.thumbnail
+import app.jaytune.android.utils.thumbnail
 import coil3.imageLoader
 import coil3.request.Disposable
 import coil3.request.ImageRequest

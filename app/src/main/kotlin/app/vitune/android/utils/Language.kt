@@ -1,4 +1,4 @@
-package app.vitune.android.utils
+package app.jaytune.android.utils
 
 import android.app.Activity
 import android.app.LocaleManager
@@ -15,7 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.getSystemService
-import app.vitune.core.ui.utils.isCompositionLaunched
+import app.jaytune.core.ui.utils.isCompositionLaunched
 import java.util.Locale
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)

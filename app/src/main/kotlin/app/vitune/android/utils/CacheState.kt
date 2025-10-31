@@ -1,4 +1,4 @@
-package app.vitune.android.utils
+package app.jaytune.android.utils
 
 import androidx.annotation.OptIn
 import androidx.compose.animation.AnimatedContent
@@ -24,17 +24,17 @@ import androidx.media3.datasource.DataSource
 import androidx.media3.datasource.DataSpec
 import androidx.media3.datasource.TransferListener
 import androidx.media3.datasource.cache.CacheDataSource
-import app.vitune.android.Database
-import app.vitune.android.LocalPlayerServiceBinder
-import app.vitune.android.R
-import app.vitune.android.models.Format
-import app.vitune.android.service.LOCAL_KEY_PREFIX
-import app.vitune.android.service.PlayerService
-import app.vitune.android.service.PrecacheService
-import app.vitune.android.service.downloadState
-import app.vitune.android.ui.components.themed.CircularProgressIndicator
-import app.vitune.android.ui.components.themed.HeaderIconButton
-import app.vitune.core.ui.LocalAppearance
+import app.jaytune.android.Database
+import app.jaytune.android.LocalPlayerServiceBinder
+import app.jaytune.android.R
+import app.jaytune.android.models.Format
+import app.jaytune.android.service.LOCAL_KEY_PREFIX
+import app.jaytune.android.service.PlayerService
+import app.jaytune.android.service.PrecacheService
+import app.jaytune.android.service.downloadState
+import app.jaytune.android.ui.components.themed.CircularProgressIndicator
+import app.jaytune.android.ui.components.themed.HeaderIconButton
+import app.jaytune.core.ui.LocalAppearance
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.flow.distinctUntilChanged
 import java.util.concurrent.atomic.AtomicBoolean

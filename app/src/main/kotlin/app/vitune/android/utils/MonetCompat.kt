@@ -1,4 +1,4 @@
-package app.vitune.android.utils
+package app.jaytune.android.utils
 
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.toArgb
@@ -6,8 +6,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import app.vitune.core.ui.ColorPalette
-import app.vitune.core.ui.defaultLightPalette
+import app.jaytune.core.ui.ColorPalette
+import app.jaytune.core.ui.defaultLightPalette
 import com.kieronquinn.monetcompat.core.MonetCompat
 import kotlinx.coroutines.launch
 

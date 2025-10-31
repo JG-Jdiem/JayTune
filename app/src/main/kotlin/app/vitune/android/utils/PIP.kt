@@ -1,4 +1,4 @@
-package app.vitune.android.utils
+package app.jaytune.android.utils
 
 import android.app.Activity
 import android.app.PictureInPictureParams
@@ -33,12 +33,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.OnPictureInPictureModeChangedProvider
 import androidx.core.app.PictureInPictureModeChangedInfo
 import androidx.core.graphics.toRect
-import app.vitune.android.R
-import app.vitune.android.preferences.AppearancePreferences
-import app.vitune.compose.persist.findActivityNullable
-import app.vitune.core.ui.utils.isAtLeastAndroid12
-import app.vitune.core.ui.utils.isAtLeastAndroid7
-import app.vitune.core.ui.utils.isAtLeastAndroid8
+import app.jaytune.android.R
+import app.jaytune.android.preferences.AppearancePreferences
+import app.jaytune.compose.persist.findActivityNullable
+import app.jaytune.core.ui.utils.isAtLeastAndroid12
+import app.jaytune.core.ui.utils.isAtLeastAndroid7
+import app.jaytune.core.ui.utils.isAtLeastAndroid8
 
 private fun logError(throwable: Throwable) = Log.e("PipHandler", "An error occurred", throwable)
 

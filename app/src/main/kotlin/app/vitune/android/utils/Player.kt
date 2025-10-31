@@ -1,12 +1,12 @@
-package app.vitune.android.utils
+package app.jaytune.android.utils
 
 import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.PlaybackParameters
 import androidx.media3.common.Player
 import androidx.media3.common.Timeline
-import app.vitune.android.preferences.AppearancePreferences
-import app.vitune.core.ui.utils.songBundle
+import app.jaytune.android.preferences.AppearancePreferences
+import app.jaytune.core.ui.utils.songBundle
 import kotlin.time.Duration
 
 val Player.currentWindow: Timeline.Window?

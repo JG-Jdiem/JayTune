@@ -1,11 +1,11 @@
-package app.vitune.android.utils
+package app.jaytune.android.utils
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
-import app.vitune.compose.persist.findActivityNullable
+import app.jaytune.compose.persist.findActivityNullable
 
 @Composable
 fun FullScreenState(

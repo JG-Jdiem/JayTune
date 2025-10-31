@@ -1,4 +1,4 @@
-package app.vitune.android.utils
+package app.jaytune.android.utils
 
 import android.content.Context
 import androidx.credentials.CreatePasswordRequest

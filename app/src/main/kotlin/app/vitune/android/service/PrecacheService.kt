@@ -1,4 +1,4 @@
-package app.vitune.android.service
+package app.jaytune.android.service
 
 import android.content.ComponentName
 import android.content.Context
@@ -19,13 +19,13 @@ import androidx.media3.exoplayer.offline.DownloadRequest
 import androidx.media3.exoplayer.offline.DownloadService
 import androidx.media3.exoplayer.scheduler.Requirements
 import androidx.media3.exoplayer.workmanager.WorkManagerScheduler
-import app.vitune.android.Database
-import app.vitune.android.R
-import app.vitune.android.transaction
-import app.vitune.android.utils.ActionReceiver
-import app.vitune.android.utils.download
-import app.vitune.android.utils.intent
-import app.vitune.android.utils.toast
+import app.jaytune.android.Database
+import app.jaytune.android.R
+import app.jaytune.android.transaction
+import app.jaytune.android.utils.ActionReceiver
+import app.jaytune.android.utils.download
+import app.jaytune.android.utils.intent
+import app.jaytune.android.utils.toast
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
@@ -103,7 +103,7 @@ class PrecacheService : DownloadService(
         }
     }
 
-    inner class NotificationActionReceiver : ActionReceiver("app.vitune.android.precache") {
+    inner class NotificationActionReceiver : ActionReceiver("app.jaytune.android.precache") {
         val cancel by action { context, _ ->
             runCatching {
                 sendPauseDownloads(

@@ -1,4 +1,4 @@
-package app.vitune.android.utils
+package app.jaytune.android.utils
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay

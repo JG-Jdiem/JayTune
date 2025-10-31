@@ -1,6 +1,6 @@
 @file:OptIn(UnstableApi::class)
 
-package app.vitune.android.utils
+package app.jaytune.android.utils
 
 import android.content.ContentUris
 import android.net.Uri
@@ -13,16 +13,16 @@ import androidx.core.net.toUri
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.util.UnstableApi
-import app.vitune.android.R
-import app.vitune.android.models.Song
-import app.vitune.android.preferences.AppearancePreferences
-import app.vitune.android.service.LOCAL_KEY_PREFIX
-import app.vitune.android.service.isLocal
-import app.vitune.core.ui.utils.SongBundleAccessor
-import app.vitune.providers.innertube.Innertube
-import app.vitune.providers.innertube.models.bodies.ContinuationBody
-import app.vitune.providers.innertube.requests.playlistPage
-import app.vitune.providers.piped.models.Playlist
+import app.jaytune.android.R
+import app.jaytune.android.models.Song
+import app.jaytune.android.preferences.AppearancePreferences
+import app.jaytune.android.service.LOCAL_KEY_PREFIX
+import app.jaytune.android.service.isLocal
+import app.jaytune.core.ui.utils.SongBundleAccessor
+import app.jaytune.providers.innertube.Innertube
+import app.jaytune.providers.innertube.models.bodies.ContinuationBody
+import app.jaytune.providers.innertube.requests.playlistPage
+import app.jaytune.providers.piped.models.Playlist
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach

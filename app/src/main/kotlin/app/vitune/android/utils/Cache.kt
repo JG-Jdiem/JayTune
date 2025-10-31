@@ -1,6 +1,6 @@
 @file:OptIn(UnstableApi::class)
 
-package app.vitune.android.utils
+package app.jaytune.android.utils
 
 import androidx.annotation.OptIn
 import androidx.media3.common.util.UnstableApi

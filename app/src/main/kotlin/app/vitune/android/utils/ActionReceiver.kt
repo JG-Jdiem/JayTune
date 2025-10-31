@@ -1,4 +1,4 @@
-package app.vitune.android.utils
+package app.jaytune.android.utils
 
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
@@ -8,7 +8,7 @@ import android.content.IntentFilter
 import android.graphics.drawable.Icon
 import android.util.Log
 import androidx.core.content.ContextCompat
-import app.vitune.core.ui.utils.isAtLeastAndroid6
+import app.jaytune.core.ui.utils.isAtLeastAndroid6
 import kotlin.properties.PropertyDelegateProvider
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty

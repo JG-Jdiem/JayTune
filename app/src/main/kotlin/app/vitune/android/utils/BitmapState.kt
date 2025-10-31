@@ -1,4 +1,4 @@
-package app.vitune.android.utils
+package app.jaytune.android.utils
 
 import android.graphics.Bitmap
 import androidx.compose.runtime.Composable
@@ -7,7 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import app.vitune.android.service.PlayerService
+import app.jaytune.android.service.PlayerService
 
 @Composable
 fun PlayerService.Binder?.collectProvidedBitmapAsState(

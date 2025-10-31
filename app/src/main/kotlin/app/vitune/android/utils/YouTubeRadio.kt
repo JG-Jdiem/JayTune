@@ -1,10 +1,10 @@
-package app.vitune.android.utils
+package app.jaytune.android.utils
 
 import androidx.media3.common.MediaItem
-import app.vitune.providers.innertube.Innertube
-import app.vitune.providers.innertube.models.bodies.ContinuationBody
-import app.vitune.providers.innertube.models.bodies.NextBody
-import app.vitune.providers.innertube.requests.nextPage
+import app.jaytune.providers.innertube.Innertube
+import app.jaytune.providers.innertube.models.bodies.ContinuationBody
+import app.jaytune.providers.innertube.models.bodies.NextBody
+import app.jaytune.providers.innertube.requests.nextPage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

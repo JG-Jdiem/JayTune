@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalTime::class)
 
-package app.vitune.android.utils
+package app.jaytune.android.utils
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -10,7 +10,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.saveable.rememberSaveable
-import app.vitune.core.ui.utils.stateListSaver
+import app.jaytune.core.ui.utils.stateListSaver
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.Dispatchers
