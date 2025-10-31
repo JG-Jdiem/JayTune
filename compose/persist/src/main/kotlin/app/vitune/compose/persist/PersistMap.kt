@@ -1,4 +1,4 @@
-package app.vitune.compose.persist
+package app.jaytune.compose.persist
 
 import android.util.Log
 import androidx.compose.runtime.MutableState
