@@ -1,9 +1,9 @@
-package app.vitune.providers.kugou
+package app.jaytune.providers.kugou
 
-import app.vitune.providers.kugou.models.DownloadLyricsResponse
-import app.vitune.providers.kugou.models.SearchLyricsResponse
-import app.vitune.providers.kugou.models.SearchSongResponse
-import app.vitune.providers.utils.runCatchingCancellable
+import app.jaytune.providers.kugou.models.DownloadLyricsResponse
+import app.jaytune.providers.kugou.models.SearchLyricsResponse
+import app.jaytune.providers.kugou.models.SearchSongResponse
+import app.jaytune.providers.utils.runCatchingCancellable
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.okhttp.OkHttp

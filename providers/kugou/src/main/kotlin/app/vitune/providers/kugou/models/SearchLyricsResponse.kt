@@ -1,4 +1,4 @@
-package app.vitune.providers.kugou.models
+package app.jaytune.providers.kugou.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
