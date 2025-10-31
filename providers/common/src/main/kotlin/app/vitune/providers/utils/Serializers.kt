@@ -1,4 +1,4 @@
-package app.vitune.providers.utils
+package app.jaytune.providers.utils
 
 import io.ktor.http.Url
 import kotlinx.datetime.LocalDateTime

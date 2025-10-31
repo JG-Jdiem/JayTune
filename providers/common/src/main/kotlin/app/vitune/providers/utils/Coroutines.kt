@@ -1,4 +1,4 @@
-package app.vitune.providers.utils
+package app.jaytune.providers.utils
 
 import kotlinx.coroutines.CancellationException
 
