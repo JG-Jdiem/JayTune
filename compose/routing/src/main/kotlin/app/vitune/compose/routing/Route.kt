@@ -1,6 +1,6 @@
 @file:Suppress("UNCHECKED_CAST")
 
-package app.vitune.compose.routing
+package app.jaytune.compose.routing
 
 import android.os.Parcelable
 import androidx.compose.runtime.Composable

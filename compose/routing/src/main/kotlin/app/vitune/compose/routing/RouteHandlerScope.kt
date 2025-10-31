@@ -1,4 +1,4 @@
-package app.vitune.compose.routing
+package app.jaytune.compose.routing
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable

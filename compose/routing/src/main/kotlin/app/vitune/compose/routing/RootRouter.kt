@@ -1,4 +1,4 @@
-package app.vitune.compose.routing
+package app.jaytune.compose.routing
 
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.animation.AnimatedContent
