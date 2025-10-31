@@ -1,4 +1,4 @@
-package app.vitune.android.ui.modifiers
+package app.jaytune.android.ui.modifiers
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent

@@ -1,4 +1,4 @@
-package app.vitune.android.ui.modifiers
+package app.jaytune.android.ui.modifiers
 
 import androidx.compose.foundation.Indication
 import androidx.compose.foundation.clickable

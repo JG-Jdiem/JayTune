@@ -1,4 +1,4 @@
-package app.vitune.android.ui.modifiers
+package app.jaytune.android.ui.modifiers
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationSpec
@@ -34,7 +34,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import app.vitune.core.ui.utils.px
+import app.jaytune.core.ui.utils.px
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
