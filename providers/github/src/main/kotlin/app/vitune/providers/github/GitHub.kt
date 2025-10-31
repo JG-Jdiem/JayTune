@@ -1,4 +1,4 @@
-package app.vitune.providers.github
+package app.jaytune.providers.github
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
