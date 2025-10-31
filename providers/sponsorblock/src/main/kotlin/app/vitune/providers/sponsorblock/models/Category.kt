@@ -1,4 +1,4 @@
-package app.vitune.providers.sponsorblock.models
+package app.jaytune.providers.sponsorblock.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
