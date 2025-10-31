@@ -1,4 +1,4 @@
-package app.vitune.android.ui.components
+package app.jaytune.android.ui.components
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.foundation.Canvas

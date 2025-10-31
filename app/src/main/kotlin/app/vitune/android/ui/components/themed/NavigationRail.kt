@@ -1,4 +1,4 @@
-package app.vitune.android.ui.components.themed
+package app.jaytune.android.ui.components.themed
 
 import android.os.Parcelable
 import androidx.annotation.DrawableRes
@@ -50,16 +50,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
-import app.vitune.android.LocalPlayerAwareWindowInsets
-import app.vitune.android.R
-import app.vitune.android.ui.screens.settings.SwitchSettingsEntry
-import app.vitune.android.utils.center
-import app.vitune.android.utils.color
-import app.vitune.android.utils.semiBold
-import app.vitune.core.ui.Dimensions
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.core.ui.utils.isLandscape
-import app.vitune.core.ui.utils.roundedShape
+import app.jaytune.android.LocalPlayerAwareWindowInsets
+import app.jaytune.android.R
+import app.jaytune.android.ui.screens.settings.SwitchSettingsEntry
+import app.jaytune.android.utils.center
+import app.jaytune.android.utils.color
+import app.jaytune.android.utils.semiBold
+import app.jaytune.core.ui.Dimensions
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.core.ui.utils.isLandscape
+import app.jaytune.core.ui.utils.roundedShape
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.parcelize.IgnoredOnParcel

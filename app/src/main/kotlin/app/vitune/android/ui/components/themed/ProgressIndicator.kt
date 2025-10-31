@@ -1,4 +1,4 @@
-package app.vitune.android.ui.components.themed
+package app.jaytune.android.ui.components.themed
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.material3.ProgressIndicatorDefaults
@@ -8,7 +8,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.StrokeCap
-import app.vitune.core.ui.LocalAppearance
+import app.jaytune.core.ui.LocalAppearance
 
 @Composable
 fun CircularProgressIndicator(

@@ -1,4 +1,4 @@
-package app.vitune.android.ui.components.themed
+package app.jaytune.android.ui.components.themed
 
 import androidx.annotation.IntRange
 import androidx.compose.foundation.Canvas
@@ -42,13 +42,13 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import app.vitune.android.R
-import app.vitune.android.utils.center
-import app.vitune.android.utils.drawCircle
-import app.vitune.android.utils.medium
-import app.vitune.android.utils.semiBold
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.core.ui.utils.roundedShape
+import app.jaytune.android.R
+import app.jaytune.android.utils.center
+import app.jaytune.android.utils.drawCircle
+import app.jaytune.android.utils.medium
+import app.jaytune.android.utils.semiBold
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.core.ui.utils.roundedShape
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.delay
 

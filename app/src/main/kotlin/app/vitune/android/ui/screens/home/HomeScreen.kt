@@ -1,30 +1,30 @@
-package app.vitune.android.ui.screens.home
+package app.jaytune.android.ui.screens.home
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
-import app.vitune.android.R
-import app.vitune.android.models.toUiMood
-import app.vitune.android.preferences.UIStatePreferences
-import app.vitune.android.ui.components.themed.Scaffold
-import app.vitune.android.ui.screens.GlobalRoutes
-import app.vitune.android.ui.screens.Route
-import app.vitune.android.ui.screens.albumRoute
-import app.vitune.android.ui.screens.artistRoute
-import app.vitune.android.ui.screens.builtInPlaylistRoute
-import app.vitune.android.ui.screens.builtinplaylist.BuiltInPlaylistScreen
-import app.vitune.android.ui.screens.localPlaylistRoute
-import app.vitune.android.ui.screens.localplaylist.LocalPlaylistScreen
-import app.vitune.android.ui.screens.mood.MoodScreen
-import app.vitune.android.ui.screens.mood.MoreAlbumsScreen
-import app.vitune.android.ui.screens.mood.MoreMoodsScreen
-import app.vitune.android.ui.screens.moodRoute
-import app.vitune.android.ui.screens.pipedPlaylistRoute
-import app.vitune.android.ui.screens.playlistRoute
-import app.vitune.android.ui.screens.searchRoute
-import app.vitune.android.ui.screens.settingsRoute
-import app.vitune.compose.persist.PersistMapCleanup
-import app.vitune.compose.routing.Route0
-import app.vitune.compose.routing.RouteHandler
+import app.jaytune.android.R
+import app.jaytune.android.models.toUiMood
+import app.jaytune.android.preferences.UIStatePreferences
+import app.jaytune.android.ui.components.themed.Scaffold
+import app.jaytune.android.ui.screens.GlobalRoutes
+import app.jaytune.android.ui.screens.Route
+import app.jaytune.android.ui.screens.albumRoute
+import app.jaytune.android.ui.screens.artistRoute
+import app.jaytune.android.ui.screens.builtInPlaylistRoute
+import app.jaytune.android.ui.screens.builtinplaylist.BuiltInPlaylistScreen
+import app.jaytune.android.ui.screens.localPlaylistRoute
+import app.jaytune.android.ui.screens.localplaylist.LocalPlaylistScreen
+import app.jaytune.android.ui.screens.mood.MoodScreen
+import app.jaytune.android.ui.screens.mood.MoreAlbumsScreen
+import app.jaytune.android.ui.screens.mood.MoreMoodsScreen
+import app.jaytune.android.ui.screens.moodRoute
+import app.jaytune.android.ui.screens.pipedPlaylistRoute
+import app.jaytune.android.ui.screens.playlistRoute
+import app.jaytune.android.ui.screens.searchRoute
+import app.jaytune.android.ui.screens.settingsRoute
+import app.jaytune.compose.persist.PersistMapCleanup
+import app.jaytune.compose.routing.Route0
+import app.jaytune.compose.routing.RouteHandler
 
 private val moreMoodsRoute = Route0("moreMoodsRoute")
 private val moreAlbumsRoute = Route0("moreAlbumsRoute")

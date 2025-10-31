@@ -1,4 +1,4 @@
-package app.vitune.android.ui.components.themed
+package app.jaytune.android.ui.components.themed
 
 import androidx.annotation.FloatRange
 import androidx.compose.foundation.background
@@ -11,8 +11,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.core.ui.shimmer
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.core.ui.shimmer
 import kotlin.random.Random
 
 @Composable

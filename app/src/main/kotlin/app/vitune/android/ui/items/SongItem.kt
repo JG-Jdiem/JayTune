@@ -1,4 +1,4 @@
-package app.vitune.android.ui.items
+package app.jaytune.android.ui.items
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.Image
@@ -26,19 +26,19 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.media3.common.MediaItem
-import app.vitune.android.R
-import app.vitune.android.models.Song
-import app.vitune.android.preferences.AppearancePreferences
-import app.vitune.android.ui.components.themed.TextPlaceholder
-import app.vitune.android.utils.medium
-import app.vitune.android.utils.secondary
-import app.vitune.android.utils.semiBold
-import app.vitune.android.utils.thumbnail
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.core.ui.shimmer
-import app.vitune.core.ui.utils.px
-import app.vitune.core.ui.utils.songBundle
-import app.vitune.providers.innertube.Innertube
+import app.jaytune.android.R
+import app.jaytune.android.models.Song
+import app.jaytune.android.preferences.AppearancePreferences
+import app.jaytune.android.ui.components.themed.TextPlaceholder
+import app.jaytune.android.utils.medium
+import app.jaytune.android.utils.secondary
+import app.jaytune.android.utils.semiBold
+import app.jaytune.android.utils.thumbnail
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.core.ui.shimmer
+import app.jaytune.core.ui.utils.px
+import app.jaytune.core.ui.utils.songBundle
+import app.jaytune.providers.innertube.Innertube
 import coil3.compose.AsyncImage
 
 @Composable

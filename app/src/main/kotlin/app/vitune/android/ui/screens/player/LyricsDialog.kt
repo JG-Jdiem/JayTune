@@ -1,4 +1,4 @@
-package app.vitune.android.ui.screens.player
+package app.jaytune.android.ui.screens.player
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedContentTransitionScope
@@ -21,19 +21,19 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import app.vitune.android.Database
-import app.vitune.android.LocalPlayerServiceBinder
-import app.vitune.android.preferences.PlayerPreferences
-import app.vitune.android.ui.modifiers.PinchDirection
-import app.vitune.android.ui.modifiers.onSwipe
-import app.vitune.android.ui.modifiers.pinchToToggle
-import app.vitune.android.utils.FullScreenState
-import app.vitune.android.utils.forceSeekToNext
-import app.vitune.android.utils.forceSeekToPrevious
-import app.vitune.android.utils.thumbnail
-import app.vitune.android.utils.windowState
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.core.ui.utils.px
+import app.jaytune.android.Database
+import app.jaytune.android.LocalPlayerServiceBinder
+import app.jaytune.android.preferences.PlayerPreferences
+import app.jaytune.android.ui.modifiers.PinchDirection
+import app.jaytune.android.ui.modifiers.onSwipe
+import app.jaytune.android.ui.modifiers.pinchToToggle
+import app.jaytune.android.utils.FullScreenState
+import app.jaytune.android.utils.forceSeekToNext
+import app.jaytune.android.utils.forceSeekToPrevious
+import app.jaytune.android.utils.thumbnail
+import app.jaytune.android.utils.windowState
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.core.ui.utils.px
 import coil3.compose.AsyncImage
 
 @Composable

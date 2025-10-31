@@ -1,4 +1,4 @@
-package app.vitune.android.ui.components.themed
+package app.jaytune.android.ui.components.themed
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -15,7 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import app.vitune.core.ui.LocalAppearance
+import app.jaytune.core.ui.LocalAppearance
 
 @Composable
 fun HeaderIconButton(

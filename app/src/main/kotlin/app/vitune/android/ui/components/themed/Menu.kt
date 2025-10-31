@@ -1,4 +1,4 @@
-package app.vitune.android.ui.components.themed
+package app.jaytune.android.ui.components.themed
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -26,9 +26,9 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import app.vitune.android.utils.medium
-import app.vitune.android.utils.secondary
-import app.vitune.core.ui.LocalAppearance
+import app.jaytune.android.utils.medium
+import app.jaytune.android.utils.secondary
+import app.jaytune.core.ui.LocalAppearance
 
 @Composable
 inline fun Menu(

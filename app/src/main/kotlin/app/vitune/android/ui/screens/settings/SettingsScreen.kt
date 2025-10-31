@@ -1,6 +1,6 @@
 @file:Suppress("TooManyFunctions")
 
-package app.vitune.android.ui.screens.settings
+package app.jaytune.android.ui.screens.settings
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
@@ -37,22 +37,22 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.text
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
-import app.vitune.android.LocalPlayerAwareWindowInsets
-import app.vitune.android.R
-import app.vitune.android.ui.components.themed.Header
-import app.vitune.android.ui.components.themed.NumberFieldDialog
-import app.vitune.android.ui.components.themed.Scaffold
-import app.vitune.android.ui.components.themed.Slider
-import app.vitune.android.ui.components.themed.Switch
-import app.vitune.android.ui.components.themed.ValueSelectorDialog
-import app.vitune.android.ui.screens.GlobalRoutes
-import app.vitune.android.ui.screens.Route
-import app.vitune.android.utils.color
-import app.vitune.android.utils.secondary
-import app.vitune.android.utils.semiBold
-import app.vitune.compose.persist.PersistMapCleanup
-import app.vitune.compose.routing.RouteHandler
-import app.vitune.core.ui.LocalAppearance
+import app.jaytune.android.LocalPlayerAwareWindowInsets
+import app.jaytune.android.R
+import app.jaytune.android.ui.components.themed.Header
+import app.jaytune.android.ui.components.themed.NumberFieldDialog
+import app.jaytune.android.ui.components.themed.Scaffold
+import app.jaytune.android.ui.components.themed.Slider
+import app.jaytune.android.ui.components.themed.Switch
+import app.jaytune.android.ui.components.themed.ValueSelectorDialog
+import app.jaytune.android.ui.screens.GlobalRoutes
+import app.jaytune.android.ui.screens.Route
+import app.jaytune.android.utils.color
+import app.jaytune.android.utils.secondary
+import app.jaytune.android.utils.semiBold
+import app.jaytune.compose.persist.PersistMapCleanup
+import app.jaytune.compose.routing.RouteHandler
+import app.jaytune.core.ui.LocalAppearance
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 

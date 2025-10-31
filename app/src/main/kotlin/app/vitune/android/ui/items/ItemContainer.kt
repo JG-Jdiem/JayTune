@@ -1,4 +1,4 @@
-package app.vitune.android.ui.items
+package app.jaytune.android.ui.items
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,7 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import app.vitune.core.ui.Dimensions
+import app.jaytune.core.ui.Dimensions
 
 @Composable
 fun ItemContainer(

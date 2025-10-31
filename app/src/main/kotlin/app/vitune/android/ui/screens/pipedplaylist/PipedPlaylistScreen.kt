@@ -1,17 +1,17 @@
-package app.vitune.android.ui.screens.pipedplaylist
+package app.jaytune.android.ui.screens.pipedplaylist
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
-import app.vitune.android.R
-import app.vitune.android.ui.components.themed.Scaffold
-import app.vitune.android.ui.screens.GlobalRoutes
-import app.vitune.android.ui.screens.Route
-import app.vitune.compose.persist.PersistMapCleanup
-import app.vitune.compose.routing.RouteHandler
-import app.vitune.providers.piped.models.authenticatedWith
+import app.jaytune.android.R
+import app.jaytune.android.ui.components.themed.Scaffold
+import app.jaytune.android.ui.screens.GlobalRoutes
+import app.jaytune.android.ui.screens.Route
+import app.jaytune.compose.persist.PersistMapCleanup
+import app.jaytune.compose.routing.RouteHandler
+import app.jaytune.providers.piped.models.authenticatedWith
 import io.ktor.http.Url
 import java.util.UUID
 

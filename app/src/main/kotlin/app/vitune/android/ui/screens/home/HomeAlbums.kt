@@ -1,4 +1,4 @@
-package app.vitune.android.ui.screens.home
+package app.jaytune.android.ui.screens.home
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
@@ -23,21 +23,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import app.vitune.android.Database
-import app.vitune.android.LocalPlayerAwareWindowInsets
-import app.vitune.android.R
-import app.vitune.android.models.Album
-import app.vitune.android.preferences.OrderPreferences
-import app.vitune.android.ui.components.themed.FloatingActionsContainerWithScrollToTop
-import app.vitune.android.ui.components.themed.Header
-import app.vitune.android.ui.components.themed.HeaderIconButton
-import app.vitune.android.ui.items.AlbumItem
-import app.vitune.android.ui.screens.Route
-import app.vitune.compose.persist.persist
-import app.vitune.core.data.enums.AlbumSortBy
-import app.vitune.core.data.enums.SortOrder
-import app.vitune.core.ui.Dimensions
-import app.vitune.core.ui.LocalAppearance
+import app.jaytune.android.Database
+import app.jaytune.android.LocalPlayerAwareWindowInsets
+import app.jaytune.android.R
+import app.jaytune.android.models.Album
+import app.jaytune.android.preferences.OrderPreferences
+import app.jaytune.android.ui.components.themed.FloatingActionsContainerWithScrollToTop
+import app.jaytune.android.ui.components.themed.Header
+import app.jaytune.android.ui.components.themed.HeaderIconButton
+import app.jaytune.android.ui.items.AlbumItem
+import app.jaytune.android.ui.screens.Route
+import app.jaytune.compose.persist.persist
+import app.jaytune.core.data.enums.AlbumSortBy
+import app.jaytune.core.data.enums.SortOrder
+import app.jaytune.core.ui.Dimensions
+import app.jaytune.core.ui.LocalAppearance
 
 @Route
 @Composable

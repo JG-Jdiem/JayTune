@@ -1,4 +1,4 @@
-package app.vitune.android.ui.screens.player
+package app.jaytune.android.ui.screens.player
 
 import android.content.ClipData
 import android.content.ClipDescription
@@ -37,15 +37,15 @@ import androidx.compose.ui.unit.dp
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.datasource.cache.Cache
 import androidx.media3.datasource.cache.CacheSpan
-import app.vitune.android.Database
-import app.vitune.android.LocalPlayerServiceBinder
-import app.vitune.android.R
-import app.vitune.android.models.Format
-import app.vitune.android.utils.color
-import app.vitune.android.utils.medium
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.core.ui.onOverlay
-import app.vitune.core.ui.overlay
+import app.jaytune.android.Database
+import app.jaytune.android.LocalPlayerServiceBinder
+import app.jaytune.android.R
+import app.jaytune.android.models.Format
+import app.jaytune.android.utils.color
+import app.jaytune.android.utils.medium
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.core.ui.onOverlay
+import app.jaytune.core.ui.overlay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch

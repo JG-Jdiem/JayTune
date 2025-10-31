@@ -1,13 +1,13 @@
-package app.vitune.android.ui.components.themed
+package app.jaytune.android.ui.components.themed
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import app.vitune.android.R
-import app.vitune.compose.reordering.ReorderingState
-import app.vitune.compose.reordering.reorder
-import app.vitune.core.ui.LocalAppearance
+import app.jaytune.android.R
+import app.jaytune.compose.reordering.ReorderingState
+import app.jaytune.compose.reordering.reorder
+import app.jaytune.core.ui.LocalAppearance
 
 @Composable
 fun ReorderHandle(

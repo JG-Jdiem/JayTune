@@ -1,4 +1,4 @@
-package app.vitune.android.ui.components
+package app.jaytune.android.ui.components
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationSpec
@@ -44,7 +44,7 @@ import androidx.compose.ui.unit.coerceAtLeast
 import androidx.compose.ui.unit.coerceAtMost
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.times
-import app.vitune.compose.routing.CallbackPredictiveBackHandler
+import app.jaytune.compose.routing.CallbackPredictiveBackHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

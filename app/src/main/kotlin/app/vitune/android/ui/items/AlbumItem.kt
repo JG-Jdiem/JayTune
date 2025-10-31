@@ -1,4 +1,4 @@
-package app.vitune.android.ui.items
+package app.jaytune.android.ui.items
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Spacer
@@ -12,15 +12,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import app.vitune.android.models.Album
-import app.vitune.android.ui.components.themed.TextPlaceholder
-import app.vitune.android.utils.secondary
-import app.vitune.android.utils.semiBold
-import app.vitune.android.utils.thumbnail
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.core.ui.shimmer
-import app.vitune.core.ui.utils.px
-import app.vitune.providers.innertube.Innertube
+import app.jaytune.android.models.Album
+import app.jaytune.android.ui.components.themed.TextPlaceholder
+import app.jaytune.android.utils.secondary
+import app.jaytune.android.utils.semiBold
+import app.jaytune.android.utils.thumbnail
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.core.ui.shimmer
+import app.jaytune.core.ui.utils.px
+import app.jaytune.providers.innertube.Innertube
 import coil3.compose.AsyncImage
 
 @Composable

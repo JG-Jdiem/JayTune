@@ -1,4 +1,4 @@
-package app.vitune.android.ui.screens.settings
+package app.jaytune.android.ui.screens.settings
 
 import androidx.annotation.OptIn
 import androidx.compose.animation.AnimatedVisibility
@@ -18,14 +18,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.media3.common.util.UnstableApi
-import app.vitune.android.LocalPlayerServiceBinder
-import app.vitune.android.R
-import app.vitune.android.preferences.PlayerPreferences
-import app.vitune.android.service.PlayerService
-import app.vitune.android.ui.components.themed.SecondaryTextButton
-import app.vitune.android.ui.screens.Route
-import app.vitune.android.utils.rememberEqualizerLauncher
-import app.vitune.core.ui.utils.isAtLeastAndroid6
+import app.jaytune.android.LocalPlayerServiceBinder
+import app.jaytune.android.R
+import app.jaytune.android.preferences.PlayerPreferences
+import app.jaytune.android.service.PlayerService
+import app.jaytune.android.ui.components.themed.SecondaryTextButton
+import app.jaytune.android.ui.screens.Route
+import app.jaytune.android.utils.rememberEqualizerLauncher
+import app.jaytune.core.ui.utils.isAtLeastAndroid6
 
 @OptIn(UnstableApi::class)
 @Route

@@ -1,4 +1,4 @@
-package app.vitune.android.ui.components
+package app.jaytune.android.ui.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -29,8 +29,8 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.times
-import app.vitune.android.LocalPlayerAwareWindowInsets
-import app.vitune.android.ui.modifiers.pressable
+import app.jaytune.android.LocalPlayerAwareWindowInsets
+import app.jaytune.android.ui.modifiers.pressable
 
 val LocalMenuState = staticCompositionLocalOf { MenuState() }
 

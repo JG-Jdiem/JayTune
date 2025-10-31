@@ -1,4 +1,4 @@
-package app.vitune.android.ui.screens.localplaylist
+package app.jaytune.android.ui.screens.localplaylist
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -6,18 +6,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.runtime.setValue
-import app.vitune.android.Database
-import app.vitune.android.R
-import app.vitune.android.models.Playlist
-import app.vitune.android.models.Song
-import app.vitune.android.ui.components.themed.Scaffold
-import app.vitune.android.ui.components.themed.adaptiveThumbnailContent
-import app.vitune.android.ui.screens.GlobalRoutes
-import app.vitune.android.ui.screens.Route
-import app.vitune.compose.persist.PersistMapCleanup
-import app.vitune.compose.persist.persist
-import app.vitune.compose.persist.persistList
-import app.vitune.compose.routing.RouteHandler
+import app.jaytune.android.Database
+import app.jaytune.android.R
+import app.jaytune.android.models.Playlist
+import app.jaytune.android.models.Song
+import app.jaytune.android.ui.components.themed.Scaffold
+import app.jaytune.android.ui.components.themed.adaptiveThumbnailContent
+import app.jaytune.android.ui.screens.GlobalRoutes
+import app.jaytune.android.ui.screens.Route
+import app.jaytune.compose.persist.PersistMapCleanup
+import app.jaytune.compose.persist.persist
+import app.jaytune.compose.persist.persistList
+import app.jaytune.compose.routing.RouteHandler
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNotNull

@@ -1,4 +1,4 @@
-package app.vitune.android.ui.items
+package app.jaytune.android.ui.items
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -14,18 +14,18 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import app.vitune.android.ui.components.themed.TextPlaceholder
-import app.vitune.android.utils.color
-import app.vitune.android.utils.medium
-import app.vitune.android.utils.secondary
-import app.vitune.android.utils.semiBold
-import app.vitune.core.ui.Dimensions
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.core.ui.onOverlay
-import app.vitune.core.ui.overlay
-import app.vitune.core.ui.shimmer
-import app.vitune.core.ui.utils.roundedShape
-import app.vitune.providers.innertube.Innertube
+import app.jaytune.android.ui.components.themed.TextPlaceholder
+import app.jaytune.android.utils.color
+import app.jaytune.android.utils.medium
+import app.jaytune.android.utils.secondary
+import app.jaytune.android.utils.semiBold
+import app.jaytune.core.ui.Dimensions
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.core.ui.onOverlay
+import app.jaytune.core.ui.overlay
+import app.jaytune.core.ui.shimmer
+import app.jaytune.core.ui.utils.roundedShape
+import app.jaytune.providers.innertube.Innertube
 import coil3.compose.AsyncImage
 
 @Composable

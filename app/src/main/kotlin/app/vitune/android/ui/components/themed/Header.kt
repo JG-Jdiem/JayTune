@@ -1,4 +1,4 @@
-package app.vitune.android.ui.components.themed
+package app.jaytune.android.ui.components.themed
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -16,11 +16,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import app.vitune.android.ui.components.FadingRow
-import app.vitune.android.utils.medium
-import app.vitune.core.ui.Dimensions
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.core.ui.shimmer
+import app.jaytune.android.ui.components.FadingRow
+import app.jaytune.android.utils.medium
+import app.jaytune.core.ui.Dimensions
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.core.ui.shimmer
 import kotlin.random.Random
 
 @Composable

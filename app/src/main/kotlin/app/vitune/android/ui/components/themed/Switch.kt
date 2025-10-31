@@ -1,4 +1,4 @@
-package app.vitune.android.ui.components.themed
+package app.jaytune.android.ui.components.themed
 
 import androidx.compose.animation.animateColor
 import androidx.compose.animation.core.animateDp
@@ -14,8 +14,8 @@ import androidx.compose.ui.geometry.center
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.unit.dp
-import app.vitune.android.utils.drawCircle
-import app.vitune.core.ui.LocalAppearance
+import app.jaytune.android.utils.drawCircle
+import app.jaytune.core.ui.LocalAppearance
 
 @Composable
 fun Switch(

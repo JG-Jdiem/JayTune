@@ -1,4 +1,4 @@
-package app.vitune.android.ui.screens.player
+package app.jaytune.android.ui.screens.player
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -17,8 +17,8 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
-import app.vitune.android.R
-import app.vitune.core.ui.LocalAppearance
+import app.jaytune.android.R
+import app.jaytune.core.ui.LocalAppearance
 import com.airbnb.lottie.LottieComposition
 import com.airbnb.lottie.LottieProperty
 import com.airbnb.lottie.compose.LottieAnimation

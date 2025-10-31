@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalTime::class)
 
-package app.vitune.android.ui.screens.settings
+package app.jaytune.android.ui.screens.settings
 
 import android.content.Intent
 import androidx.compose.animation.AnimatedContent
@@ -43,21 +43,21 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import app.vitune.android.LocalPlayerAwareWindowInsets
-import app.vitune.android.R
-import app.vitune.android.ui.components.themed.FloatingActionsContainerWithScrollToTop
-import app.vitune.android.ui.components.themed.Scaffold
-import app.vitune.android.ui.screens.GlobalRoutes
-import app.vitune.android.ui.screens.Route
-import app.vitune.android.utils.Logcat
-import app.vitune.android.utils.color
-import app.vitune.android.utils.logcat
-import app.vitune.android.utils.semiBold
-import app.vitune.android.utils.smoothScrollToTop
-import app.vitune.compose.routing.RouteHandler
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.core.ui.surface
-import app.vitune.core.ui.utils.ActivityIntentBundleAccessor
+import app.jaytune.android.LocalPlayerAwareWindowInsets
+import app.jaytune.android.R
+import app.jaytune.android.ui.components.themed.FloatingActionsContainerWithScrollToTop
+import app.jaytune.android.ui.components.themed.Scaffold
+import app.jaytune.android.ui.screens.GlobalRoutes
+import app.jaytune.android.ui.screens.Route
+import app.jaytune.android.utils.Logcat
+import app.jaytune.android.utils.color
+import app.jaytune.android.utils.logcat
+import app.jaytune.android.utils.semiBold
+import app.jaytune.android.utils.smoothScrollToTop
+import app.jaytune.compose.routing.RouteHandler
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.core.ui.surface
+import app.jaytune.core.ui.utils.ActivityIntentBundleAccessor
 import kotlinx.coroutines.delay
 import kotlin.time.ExperimentalTime
 

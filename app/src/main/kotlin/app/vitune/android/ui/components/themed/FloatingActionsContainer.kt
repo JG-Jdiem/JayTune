@@ -1,4 +1,4 @@
-package app.vitune.android.ui.components.themed
+package app.jaytune.android.ui.components.themed
 
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.AnimatedVisibility
@@ -22,11 +22,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import app.vitune.android.LocalPlayerAwareWindowInsets
-import app.vitune.android.R
-import app.vitune.android.utils.ScrollingInfo
-import app.vitune.android.utils.scrollingInfo
-import app.vitune.android.utils.smoothScrollToTop
+import app.jaytune.android.LocalPlayerAwareWindowInsets
+import app.jaytune.android.R
+import app.jaytune.android.utils.ScrollingInfo
+import app.jaytune.android.utils.scrollingInfo
+import app.jaytune.android.utils.smoothScrollToTop
 import kotlinx.coroutines.launch
 
 @Composable

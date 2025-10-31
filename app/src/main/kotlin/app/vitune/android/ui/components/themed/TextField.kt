@@ -1,4 +1,4 @@
-package app.vitune.android.ui.components.themed
+package app.jaytune.android.ui.components.themed
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
@@ -20,10 +20,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextOverflow
-import app.vitune.android.utils.secondary
-import app.vitune.android.utils.semiBold
-import app.vitune.core.ui.Appearance
-import app.vitune.core.ui.LocalAppearance
+import app.jaytune.android.utils.secondary
+import app.jaytune.android.utils.semiBold
+import app.jaytune.core.ui.Appearance
+import app.jaytune.core.ui.LocalAppearance
 
 @Composable
 fun ColumnScope.TextField(

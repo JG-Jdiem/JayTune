@@ -1,4 +1,4 @@
-package app.vitune.android.ui.components.themed
+package app.jaytune.android.ui.components.themed
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedContentTransitionScope
@@ -16,10 +16,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import app.vitune.android.R
-import app.vitune.android.utils.medium
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.core.ui.utils.roundedShape
+import app.jaytune.android.R
+import app.jaytune.android.utils.medium
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.core.ui.utils.roundedShape
 
 @Composable
 fun TextToggle(

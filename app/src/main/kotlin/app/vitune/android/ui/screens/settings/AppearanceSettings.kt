@@ -1,4 +1,4 @@
-package app.vitune.android.ui.screens.settings
+package app.jaytune.android.ui.screens.settings
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
@@ -11,21 +11,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import app.vitune.android.R
-import app.vitune.android.preferences.AppearancePreferences
-import app.vitune.android.preferences.PlayerPreferences
-import app.vitune.android.ui.screens.Route
-import app.vitune.android.utils.currentLocale
-import app.vitune.android.utils.findActivity
-import app.vitune.android.utils.startLanguagePicker
-import app.vitune.core.ui.BuiltInFontFamily
-import app.vitune.core.ui.ColorMode
-import app.vitune.core.ui.ColorSource
-import app.vitune.core.ui.Darkness
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.core.ui.ThumbnailRoundness
-import app.vitune.core.ui.googleFontsAvailable
-import app.vitune.core.ui.utils.isAtLeastAndroid13
+import app.jaytune.android.R
+import app.jaytune.android.preferences.AppearancePreferences
+import app.jaytune.android.preferences.PlayerPreferences
+import app.jaytune.android.ui.screens.Route
+import app.jaytune.android.utils.currentLocale
+import app.jaytune.android.utils.findActivity
+import app.jaytune.android.utils.startLanguagePicker
+import app.jaytune.core.ui.BuiltInFontFamily
+import app.jaytune.core.ui.ColorMode
+import app.jaytune.core.ui.ColorSource
+import app.jaytune.core.ui.Darkness
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.core.ui.ThumbnailRoundness
+import app.jaytune.core.ui.googleFontsAvailable
+import app.jaytune.core.ui.utils.isAtLeastAndroid13
 
 @Route
 @Composable

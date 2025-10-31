@@ -1,4 +1,4 @@
-package app.vitune.android.ui.screens.settings
+package app.jaytune.android.ui.screens.settings
 
 import android.text.format.Formatter
 import androidx.annotation.OptIn
@@ -17,14 +17,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.media3.common.util.UnstableApi
-import app.vitune.android.LocalPlayerServiceBinder
-import app.vitune.android.R
-import app.vitune.android.preferences.DataPreferences
-import app.vitune.android.preferences.PlayerPreferences
-import app.vitune.android.ui.components.themed.LinearProgressIndicator
-import app.vitune.android.ui.components.themed.SecondaryTextButton
-import app.vitune.android.ui.screens.Route
-import app.vitune.core.data.enums.ExoPlayerDiskCacheSize
+import app.jaytune.android.LocalPlayerServiceBinder
+import app.jaytune.android.R
+import app.jaytune.android.preferences.DataPreferences
+import app.jaytune.android.preferences.PlayerPreferences
+import app.jaytune.android.ui.components.themed.LinearProgressIndicator
+import app.jaytune.android.ui.components.themed.SecondaryTextButton
+import app.jaytune.android.ui.screens.Route
+import app.jaytune.core.data.enums.ExoPlayerDiskCacheSize
 import coil3.imageLoader
 
 @OptIn(UnstableApi::class)

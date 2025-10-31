@@ -1,4 +1,4 @@
-package app.vitune.android.ui.screens.search
+package app.jaytune.android.ui.screens.search
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
@@ -16,14 +16,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
-import app.vitune.android.R
-import app.vitune.android.ui.components.themed.Scaffold
-import app.vitune.android.ui.screens.GlobalRoutes
-import app.vitune.android.ui.screens.Route
-import app.vitune.android.utils.secondary
-import app.vitune.compose.persist.PersistMapCleanup
-import app.vitune.compose.routing.RouteHandler
-import app.vitune.core.ui.LocalAppearance
+import app.jaytune.android.R
+import app.jaytune.android.ui.components.themed.Scaffold
+import app.jaytune.android.ui.screens.GlobalRoutes
+import app.jaytune.android.ui.screens.Route
+import app.jaytune.android.utils.secondary
+import app.jaytune.compose.persist.PersistMapCleanup
+import app.jaytune.compose.routing.RouteHandler
+import app.jaytune.core.ui.LocalAppearance
 
 @Route
 @Composable

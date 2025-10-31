@@ -1,4 +1,4 @@
-package app.vitune.android.ui.screens.mood
+package app.jaytune.android.ui.screens.mood
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -21,20 +21,20 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import app.vitune.android.LocalPlayerAwareWindowInsets
-import app.vitune.android.R
-import app.vitune.android.ui.components.ShimmerHost
-import app.vitune.android.ui.components.themed.Header
-import app.vitune.android.ui.components.themed.HeaderPlaceholder
-import app.vitune.android.ui.items.AlbumItem
-import app.vitune.android.ui.items.AlbumItemPlaceholder
-import app.vitune.compose.persist.persist
-import app.vitune.core.ui.Dimensions
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.providers.innertube.Innertube
-import app.vitune.providers.innertube.models.bodies.BrowseBody
-import app.vitune.providers.innertube.requests.BrowseResult
-import app.vitune.providers.innertube.requests.browse
+import app.jaytune.android.LocalPlayerAwareWindowInsets
+import app.jaytune.android.R
+import app.jaytune.android.ui.components.ShimmerHost
+import app.jaytune.android.ui.components.themed.Header
+import app.jaytune.android.ui.components.themed.HeaderPlaceholder
+import app.jaytune.android.ui.items.AlbumItem
+import app.jaytune.android.ui.items.AlbumItemPlaceholder
+import app.jaytune.compose.persist.persist
+import app.jaytune.core.ui.Dimensions
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.providers.innertube.Innertube
+import app.jaytune.providers.innertube.models.bodies.BrowseBody
+import app.jaytune.providers.innertube.requests.BrowseResult
+import app.jaytune.providers.innertube.requests.browse
 import com.valentinilk.shimmer.shimmer
 import kotlinx.collections.immutable.toImmutableList
 

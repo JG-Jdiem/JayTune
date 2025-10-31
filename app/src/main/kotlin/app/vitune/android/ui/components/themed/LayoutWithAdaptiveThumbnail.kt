@@ -1,4 +1,4 @@
-package app.vitune.android.ui.components.themed
+package app.jaytune.android.ui.components.themed
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -15,12 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
-import app.vitune.android.utils.thumbnail
-import app.vitune.core.ui.Dimensions
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.core.ui.shimmer
-import app.vitune.core.ui.utils.isLandscape
-import app.vitune.core.ui.utils.px
+import app.jaytune.android.utils.thumbnail
+import app.jaytune.core.ui.Dimensions
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.core.ui.shimmer
+import app.jaytune.core.ui.utils.isLandscape
+import app.jaytune.core.ui.utils.px
 import coil3.compose.AsyncImage
 import com.valentinilk.shimmer.shimmer
 

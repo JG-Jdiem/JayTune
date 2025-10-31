@@ -1,4 +1,4 @@
-package app.vitune.android.ui.components.themed
+package app.jaytune.android.ui.components.themed
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -9,11 +9,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import app.vitune.android.utils.disabled
-import app.vitune.android.utils.medium
-import app.vitune.android.utils.primary
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.core.ui.utils.roundedShape
+import app.jaytune.android.utils.disabled
+import app.jaytune.android.utils.medium
+import app.jaytune.android.utils.primary
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.core.ui.utils.roundedShape
 
 @Composable
 fun DialogTextButton(

@@ -1,4 +1,4 @@
-package app.vitune.android.ui.screens.mood
+package app.jaytune.android.ui.screens.mood
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.WindowInsetsSides
@@ -22,21 +22,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
-import app.vitune.android.LocalPlayerAwareWindowInsets
-import app.vitune.android.R
-import app.vitune.android.ui.components.ShimmerHost
-import app.vitune.android.ui.components.themed.Header
-import app.vitune.android.ui.components.themed.HeaderPlaceholder
-import app.vitune.android.ui.items.SongItemPlaceholder
-import app.vitune.android.ui.screens.home.MoodItem
-import app.vitune.android.utils.semiBold
-import app.vitune.compose.persist.persist
-import app.vitune.core.ui.Dimensions
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.providers.innertube.Innertube
-import app.vitune.providers.innertube.models.bodies.BrowseBody
-import app.vitune.providers.innertube.requests.BrowseResult
-import app.vitune.providers.innertube.requests.browse
+import app.jaytune.android.LocalPlayerAwareWindowInsets
+import app.jaytune.android.R
+import app.jaytune.android.ui.components.ShimmerHost
+import app.jaytune.android.ui.components.themed.Header
+import app.jaytune.android.ui.components.themed.HeaderPlaceholder
+import app.jaytune.android.ui.items.SongItemPlaceholder
+import app.jaytune.android.ui.screens.home.MoodItem
+import app.jaytune.android.utils.semiBold
+import app.jaytune.compose.persist.persist
+import app.jaytune.core.ui.Dimensions
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.providers.innertube.Innertube
+import app.jaytune.providers.innertube.models.bodies.BrowseBody
+import app.jaytune.providers.innertube.requests.BrowseResult
+import app.jaytune.providers.innertube.requests.browse
 import com.valentinilk.shimmer.shimmer
 import kotlinx.collections.immutable.toImmutableList
 

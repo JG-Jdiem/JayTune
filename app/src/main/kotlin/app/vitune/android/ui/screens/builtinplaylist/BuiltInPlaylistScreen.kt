@@ -1,4 +1,4 @@
-package app.vitune.android.ui.screens.builtinplaylist
+package app.jaytune.android.ui.screens.builtinplaylist
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
@@ -9,15 +9,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.res.stringResource
-import app.vitune.android.R
-import app.vitune.android.preferences.DataPreferences
-import app.vitune.android.preferences.UIStatePreferences
-import app.vitune.android.ui.components.themed.Scaffold
-import app.vitune.android.ui.screens.GlobalRoutes
-import app.vitune.android.ui.screens.Route
-import app.vitune.compose.persist.PersistMapCleanup
-import app.vitune.compose.routing.RouteHandler
-import app.vitune.core.data.enums.BuiltInPlaylist
+import app.jaytune.android.R
+import app.jaytune.android.preferences.DataPreferences
+import app.jaytune.android.preferences.UIStatePreferences
+import app.jaytune.android.ui.components.themed.Scaffold
+import app.jaytune.android.ui.screens.GlobalRoutes
+import app.jaytune.android.ui.screens.Route
+import app.jaytune.compose.persist.PersistMapCleanup
+import app.jaytune.compose.routing.RouteHandler
+import app.jaytune.core.data.enums.BuiltInPlaylist
 
 object BuiltInPlaylistScreen {
     internal const val KEY = "builtinplaylist"

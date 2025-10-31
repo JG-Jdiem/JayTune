@@ -1,4 +1,4 @@
-package app.vitune.android.ui.components
+package app.jaytune.android.ui.components
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.horizontalScroll
@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import app.vitune.android.ui.modifiers.horizontalFadingEdge
+import app.jaytune.android.ui.modifiers.horizontalFadingEdge
 
 @Composable
 inline fun FadingRow(

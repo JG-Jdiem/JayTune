@@ -1,4 +1,4 @@
-package app.vitune.android.ui.screens.home
+package app.jaytune.android.ui.screens.home
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
@@ -29,39 +29,39 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import app.vitune.android.Database
-import app.vitune.android.LocalPlayerAwareWindowInsets
-import app.vitune.android.R
-import app.vitune.android.models.PipedSession
-import app.vitune.android.models.Playlist
-import app.vitune.android.models.PlaylistPreview
-import app.vitune.android.preferences.DataPreferences
-import app.vitune.android.preferences.OrderPreferences
-import app.vitune.android.preferences.UIStatePreferences
-import app.vitune.android.query
-import app.vitune.android.ui.components.themed.FloatingActionsContainerWithScrollToTop
-import app.vitune.android.ui.components.themed.Header
-import app.vitune.android.ui.components.themed.HeaderIconButton
-import app.vitune.android.ui.components.themed.SecondaryTextButton
-import app.vitune.android.ui.components.themed.TextFieldDialog
-import app.vitune.android.ui.components.themed.VerticalDivider
-import app.vitune.android.ui.items.PlaylistItem
-import app.vitune.android.ui.screens.Route
-import app.vitune.android.ui.screens.builtinplaylist.BuiltInPlaylistScreen
-import app.vitune.android.ui.screens.settings.SettingsEntryGroupText
-import app.vitune.android.ui.screens.settings.SettingsGroupSpacer
-import app.vitune.compose.persist.persist
-import app.vitune.compose.persist.persistList
-import app.vitune.core.data.enums.BuiltInPlaylist
-import app.vitune.core.data.enums.PlaylistSortBy
-import app.vitune.core.data.enums.SortOrder
-import app.vitune.core.ui.Dimensions
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.providers.piped.Piped
-import app.vitune.providers.piped.models.Session
+import app.jaytune.android.Database
+import app.jaytune.android.LocalPlayerAwareWindowInsets
+import app.jaytune.android.R
+import app.jaytune.android.models.PipedSession
+import app.jaytune.android.models.Playlist
+import app.jaytune.android.models.PlaylistPreview
+import app.jaytune.android.preferences.DataPreferences
+import app.jaytune.android.preferences.OrderPreferences
+import app.jaytune.android.preferences.UIStatePreferences
+import app.jaytune.android.query
+import app.jaytune.android.ui.components.themed.FloatingActionsContainerWithScrollToTop
+import app.jaytune.android.ui.components.themed.Header
+import app.jaytune.android.ui.components.themed.HeaderIconButton
+import app.jaytune.android.ui.components.themed.SecondaryTextButton
+import app.jaytune.android.ui.components.themed.TextFieldDialog
+import app.jaytune.android.ui.components.themed.VerticalDivider
+import app.jaytune.android.ui.items.PlaylistItem
+import app.jaytune.android.ui.screens.Route
+import app.jaytune.android.ui.screens.builtinplaylist.BuiltInPlaylistScreen
+import app.jaytune.android.ui.screens.settings.SettingsEntryGroupText
+import app.jaytune.android.ui.screens.settings.SettingsGroupSpacer
+import app.jaytune.compose.persist.persist
+import app.jaytune.compose.persist.persistList
+import app.jaytune.core.data.enums.BuiltInPlaylist
+import app.jaytune.core.data.enums.PlaylistSortBy
+import app.jaytune.core.data.enums.SortOrder
+import app.jaytune.core.ui.Dimensions
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.providers.piped.Piped
+import app.jaytune.providers.piped.models.Session
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.async
-import app.vitune.providers.piped.models.PlaylistPreview as PipedPlaylistPreview
+import app.jaytune.providers.piped.models.PlaylistPreview as PipedPlaylistPreview
 
 @Route
 @Composable

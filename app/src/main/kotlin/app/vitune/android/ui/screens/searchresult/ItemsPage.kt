@@ -1,4 +1,4 @@
-package app.vitune.android.ui.screens.searchresult
+package app.jaytune.android.ui.screens.searchresult
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsetsSides
@@ -22,16 +22,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import app.vitune.android.LocalPlayerAwareWindowInsets
-import app.vitune.android.R
-import app.vitune.android.ui.components.ShimmerHost
-import app.vitune.android.ui.components.themed.FloatingActionsContainerWithScrollToTop
-import app.vitune.android.utils.center
-import app.vitune.android.utils.secondary
-import app.vitune.compose.persist.persist
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.providers.innertube.Innertube
-import app.vitune.providers.innertube.utils.plus
+import app.jaytune.android.LocalPlayerAwareWindowInsets
+import app.jaytune.android.R
+import app.jaytune.android.ui.components.ShimmerHost
+import app.jaytune.android.ui.components.themed.FloatingActionsContainerWithScrollToTop
+import app.jaytune.android.utils.center
+import app.jaytune.android.utils.secondary
+import app.jaytune.compose.persist.persist
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.providers.innertube.Innertube
+import app.jaytune.providers.innertube.utils.plus
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

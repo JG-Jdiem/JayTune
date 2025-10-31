@@ -1,4 +1,4 @@
-package app.vitune.android.ui.screens.settings
+package app.jaytune.android.ui.screens.settings
 
 import android.Manifest
 import android.content.Context
@@ -33,35 +33,35 @@ import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
-import app.vitune.android.BuildConfig
-import app.vitune.android.R
-import app.vitune.android.preferences.DataPreferences
-import app.vitune.android.service.ServiceNotifications
-import app.vitune.android.ui.components.themed.CircularProgressIndicator
-import app.vitune.android.ui.components.themed.DefaultDialog
-import app.vitune.android.ui.components.themed.SecondaryTextButton
-import app.vitune.android.ui.screens.Route
-import app.vitune.android.utils.bold
-import app.vitune.android.utils.center
-import app.vitune.android.utils.hasPermission
-import app.vitune.android.utils.pendingIntent
-import app.vitune.android.utils.semiBold
-import app.vitune.core.data.utils.Version
-import app.vitune.core.data.utils.version
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.core.ui.utils.isAtLeastAndroid13
-import app.vitune.core.ui.utils.isCompositionLaunched
-import app.vitune.providers.github.GitHub
-import app.vitune.providers.github.models.Release
-import app.vitune.providers.github.requests.releases
+import app.jaytune.android.BuildConfig
+import app.jaytune.android.R
+import app.jaytune.android.preferences.DataPreferences
+import app.jaytune.android.service.ServiceNotifications
+import app.jaytune.android.ui.components.themed.CircularProgressIndicator
+import app.jaytune.android.ui.components.themed.DefaultDialog
+import app.jaytune.android.ui.components.themed.SecondaryTextButton
+import app.jaytune.android.ui.screens.Route
+import app.jaytune.android.utils.bold
+import app.jaytune.android.utils.center
+import app.jaytune.android.utils.hasPermission
+import app.jaytune.android.utils.pendingIntent
+import app.jaytune.android.utils.semiBold
+import app.jaytune.core.data.utils.Version
+import app.jaytune.core.data.utils.version
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.core.ui.utils.isAtLeastAndroid13
+import app.jaytune.core.ui.utils.isCompositionLaunched
+import app.jaytune.providers.github.GitHub
+import app.jaytune.providers.github.models.Release
+import app.jaytune.providers.github.requests.releases
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.time.Duration
 import kotlin.time.toJavaDuration
 
 private val VERSION_NAME = BuildConfig.VERSION_NAME.substringBeforeLast("-")
-private const val REPO_OWNER = "25huizengek1"
-private const val REPO_NAME = "ViTune"
+private const val REPO_OWNER = "JG-Jdiem"
+private const val REPO_NAME = "JayTune"
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 private val permission = Manifest.permission.POST_NOTIFICATIONS

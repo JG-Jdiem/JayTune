@@ -1,12 +1,12 @@
-package app.vitune.android.ui.components.themed
+package app.jaytune.android.ui.components.themed
 
 import androidx.annotation.IntRange
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.core.ui.surface
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.core.ui.surface
 
 @Composable
 fun Slider(

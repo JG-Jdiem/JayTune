@@ -1,4 +1,4 @@
-package app.vitune.android.ui.screens.player
+package app.jaytune.android.ui.screens.player
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
@@ -23,13 +23,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import app.vitune.android.utils.center
-import app.vitune.android.utils.color
-import app.vitune.android.utils.isInPip
-import app.vitune.android.utils.medium
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.core.ui.onOverlay
-import app.vitune.core.ui.overlay
+import app.jaytune.android.utils.center
+import app.jaytune.android.utils.color
+import app.jaytune.android.utils.isInPip
+import app.jaytune.android.utils.medium
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.core.ui.onOverlay
+import app.jaytune.core.ui.overlay
 
 @Composable
 fun PlaybackError(

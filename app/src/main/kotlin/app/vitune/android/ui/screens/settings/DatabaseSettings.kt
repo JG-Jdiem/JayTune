@@ -1,4 +1,4 @@
-package app.vitune.android.ui.screens.settings
+package app.jaytune.android.ui.screens.settings
 
 import android.content.ActivityNotFoundException
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -11,16 +11,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
-import app.vitune.android.Database
-import app.vitune.android.R
-import app.vitune.android.internal
-import app.vitune.android.preferences.DataPreferences
-import app.vitune.android.query
-import app.vitune.android.service.PlayerService
-import app.vitune.android.transaction
-import app.vitune.android.ui.screens.Route
-import app.vitune.android.utils.intent
-import app.vitune.android.utils.toast
+import app.jaytune.android.Database
+import app.jaytune.android.R
+import app.jaytune.android.internal
+import app.jaytune.android.preferences.DataPreferences
+import app.jaytune.android.query
+import app.jaytune.android.service.PlayerService
+import app.jaytune.android.transaction
+import app.jaytune.android.ui.screens.Route
+import app.jaytune.android.utils.intent
+import app.jaytune.android.utils.toast
 import kotlinx.coroutines.flow.distinctUntilChanged
 import java.io.FileInputStream
 import java.io.FileOutputStream

@@ -1,4 +1,4 @@
-package app.vitune.android.ui.screens.artist
+package app.jaytune.android.ui.screens.artist
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -19,28 +19,28 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import app.vitune.android.Database
-import app.vitune.android.LocalPlayerAwareWindowInsets
-import app.vitune.android.LocalPlayerServiceBinder
-import app.vitune.android.R
-import app.vitune.android.models.Song
-import app.vitune.android.ui.components.LocalMenuState
-import app.vitune.android.ui.components.ShimmerHost
-import app.vitune.android.ui.components.themed.FloatingActionsContainerWithScrollToTop
-import app.vitune.android.ui.components.themed.LayoutWithAdaptiveThumbnail
-import app.vitune.android.ui.components.themed.NonQueuedMediaItemMenu
-import app.vitune.android.ui.components.themed.SecondaryTextButton
-import app.vitune.android.ui.items.SongItem
-import app.vitune.android.ui.items.SongItemPlaceholder
-import app.vitune.android.utils.asMediaItem
-import app.vitune.android.utils.enqueue
-import app.vitune.android.utils.forcePlayAtIndex
-import app.vitune.android.utils.forcePlayFromBeginning
-import app.vitune.android.utils.playingSong
-import app.vitune.compose.persist.persist
-import app.vitune.core.ui.Dimensions
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.core.ui.utils.isLandscape
+import app.jaytune.android.Database
+import app.jaytune.android.LocalPlayerAwareWindowInsets
+import app.jaytune.android.LocalPlayerServiceBinder
+import app.jaytune.android.R
+import app.jaytune.android.models.Song
+import app.jaytune.android.ui.components.LocalMenuState
+import app.jaytune.android.ui.components.ShimmerHost
+import app.jaytune.android.ui.components.themed.FloatingActionsContainerWithScrollToTop
+import app.jaytune.android.ui.components.themed.LayoutWithAdaptiveThumbnail
+import app.jaytune.android.ui.components.themed.NonQueuedMediaItemMenu
+import app.jaytune.android.ui.components.themed.SecondaryTextButton
+import app.jaytune.android.ui.items.SongItem
+import app.jaytune.android.ui.items.SongItemPlaceholder
+import app.jaytune.android.utils.asMediaItem
+import app.jaytune.android.utils.enqueue
+import app.jaytune.android.utils.forcePlayAtIndex
+import app.jaytune.android.utils.forcePlayFromBeginning
+import app.jaytune.android.utils.playingSong
+import app.jaytune.compose.persist.persist
+import app.jaytune.core.ui.Dimensions
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.core.ui.utils.isLandscape
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

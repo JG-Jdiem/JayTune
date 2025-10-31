@@ -1,4 +1,4 @@
-package app.vitune.android.ui.components.themed
+package app.jaytune.android.ui.components.themed
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedContentTransitionScope.SlideDirection.Companion.Down
@@ -17,9 +17,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.IntOffset
-import app.vitune.android.R
-import app.vitune.android.preferences.UIStatePreferences
-import app.vitune.core.ui.LocalAppearance
+import app.jaytune.android.R
+import app.jaytune.android.preferences.UIStatePreferences
+import app.jaytune.core.ui.LocalAppearance
 import kotlinx.collections.immutable.toImmutableList
 
 @Composable

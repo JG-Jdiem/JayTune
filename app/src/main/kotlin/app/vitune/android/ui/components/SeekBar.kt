@@ -1,4 +1,4 @@
-package app.vitune.android.ui.components
+package app.jaytune.android.ui.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.LinearEasing
@@ -52,13 +52,13 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.media3.common.C
-import app.vitune.android.models.ui.UiMedia
-import app.vitune.android.preferences.PlayerPreferences
-import app.vitune.android.service.PlayerService
-import app.vitune.android.utils.formatAsDuration
-import app.vitune.android.utils.semiBold
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.core.ui.utils.roundedShape
+import app.jaytune.android.models.ui.UiMedia
+import app.jaytune.android.preferences.PlayerPreferences
+import app.jaytune.android.service.PlayerService
+import app.jaytune.android.utils.formatAsDuration
+import app.jaytune.android.utils.semiBold
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.core.ui.utils.roundedShape
 import kotlin.math.PI
 import kotlin.math.sin
 

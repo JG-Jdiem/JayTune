@@ -1,4 +1,4 @@
-package app.vitune.android.ui.components.themed
+package app.jaytune.android.ui.components.themed
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -14,8 +14,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import app.vitune.core.ui.LocalAppearance
-import app.vitune.core.ui.surface
+import app.jaytune.core.ui.LocalAppearance
+import app.jaytune.core.ui.surface
 
 @Composable
 fun SecondaryButton(
