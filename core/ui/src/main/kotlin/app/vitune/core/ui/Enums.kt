@@ -1,8 +1,8 @@
-package app.vitune.core.ui
+package app.jaytune.core.ui
 
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import app.vitune.core.ui.utils.roundedShape
+import app.jaytune.core.ui.utils.roundedShape
 
 enum class ThumbnailRoundness(val dp: Dp) {
     None(0.dp),

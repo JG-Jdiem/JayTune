@@ -1,4 +1,4 @@
-package app.vitune.core.ui
+package app.jaytune.core.ui
 
 import android.graphics.Bitmap
 import android.os.Parcel

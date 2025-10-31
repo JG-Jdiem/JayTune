@@ -1,4 +1,4 @@
-package app.vitune.core.ui
+package app.jaytune.core.ui
 
 import android.os.Parcel
 import android.os.Parcelable
