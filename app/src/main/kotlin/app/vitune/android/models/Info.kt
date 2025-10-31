@@ -1,4 +1,4 @@
-package app.vitune.android.models
+package app.jaytune.android.models
 
 data class Info(
     val id: String,

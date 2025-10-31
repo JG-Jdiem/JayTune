@@ -1,9 +1,9 @@
-package app.vitune.android.models
+package app.jaytune.android.models
 
 import android.os.Parcelable
 import androidx.compose.ui.graphics.Color
-import app.vitune.core.ui.ColorParceler
-import app.vitune.providers.innertube.Innertube
+import app.jaytune.core.ui.ColorParceler
+import app.jaytune.providers.innertube.Innertube
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.WriteWith
 

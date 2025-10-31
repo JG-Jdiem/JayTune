@@ -1,4 +1,4 @@
-package app.vitune.android.models
+package app.jaytune.android.models
 
 import androidx.compose.runtime.Immutable
 import androidx.media3.common.MediaItem

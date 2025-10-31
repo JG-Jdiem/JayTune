@@ -1,7 +1,7 @@
-package app.vitune.android.models.ui
+package app.jaytune.android.models.ui
 
 import androidx.media3.common.MediaItem
-import app.vitune.core.ui.utils.songBundle
+import app.jaytune.core.ui.utils.songBundle
 
 data class UiMedia(
     val id: String,
