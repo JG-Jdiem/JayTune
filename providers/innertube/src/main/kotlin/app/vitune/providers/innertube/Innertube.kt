@@ -1,11 +1,11 @@
-package app.vitune.providers.innertube
+package app.jaytune.providers.innertube
 
-import app.vitune.providers.innertube.models.Context
-import app.vitune.providers.innertube.models.MusicNavigationButtonRenderer
-import app.vitune.providers.innertube.models.NavigationEndpoint
-import app.vitune.providers.innertube.models.Runs
-import app.vitune.providers.innertube.models.Thumbnail
-import app.vitune.providers.utils.runCatchingCancellable
+import app.jaytune.providers.innertube.models.Context
+import app.jaytune.providers.innertube.models.MusicNavigationButtonRenderer
+import app.jaytune.providers.innertube.models.NavigationEndpoint
+import app.jaytune.providers.innertube.models.Runs
+import app.jaytune.providers.innertube.models.Thumbnail
+import app.jaytune.providers.utils.runCatchingCancellable
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.HttpResponseValidator

@@ -1,8 +1,8 @@
-package app.vitune.providers.innertube.requests
+package app.jaytune.providers.innertube.requests
 
-import app.vitune.providers.innertube.Innertube
-import app.vitune.providers.innertube.models.NavigationEndpoint
-import app.vitune.providers.innertube.models.bodies.BrowseBody
+import app.jaytune.providers.innertube.Innertube
+import app.jaytune.providers.innertube.models.NavigationEndpoint
+import app.jaytune.providers.innertube.models.bodies.BrowseBody
 import io.ktor.http.Url
 
 suspend fun Innertube.albumPage(body: BrowseBody) =

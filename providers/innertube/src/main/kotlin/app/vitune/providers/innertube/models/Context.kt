@@ -1,7 +1,7 @@
-package app.vitune.providers.innertube.models
+package app.jaytune.providers.innertube.models
 
-import app.vitune.providers.innertube.Innertube
-import app.vitune.providers.innertube.json
+import app.jaytune.providers.innertube.Innertube
+import app.jaytune.providers.innertube.json
 import io.ktor.client.request.get
 import io.ktor.client.request.header
 import io.ktor.client.request.headers

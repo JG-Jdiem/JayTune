@@ -1,13 +1,13 @@
-package app.vitune.providers.innertube.requests
+package app.jaytune.providers.innertube.requests
 
-import app.vitune.providers.innertube.Innertube
-import app.vitune.providers.innertube.models.BrowseResponse
-import app.vitune.providers.innertube.models.MusicTwoRowItemRenderer
-import app.vitune.providers.innertube.models.bodies.BrowseBody
-import app.vitune.providers.innertube.models.oddElements
-import app.vitune.providers.innertube.models.splitBySeparator
-import app.vitune.providers.innertube.utils.from
-import app.vitune.providers.utils.runCatchingCancellable
+import app.jaytune.providers.innertube.Innertube
+import app.jaytune.providers.innertube.models.BrowseResponse
+import app.jaytune.providers.innertube.models.MusicTwoRowItemRenderer
+import app.jaytune.providers.innertube.models.bodies.BrowseBody
+import app.jaytune.providers.innertube.models.oddElements
+import app.jaytune.providers.innertube.models.splitBySeparator
+import app.jaytune.providers.innertube.utils.from
+import app.jaytune.providers.utils.runCatchingCancellable
 import io.ktor.client.call.body
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody

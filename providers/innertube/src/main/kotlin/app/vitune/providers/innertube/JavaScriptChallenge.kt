@@ -1,4 +1,4 @@
-package app.vitune.providers.innertube
+package app.jaytune.providers.innertube
 
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock

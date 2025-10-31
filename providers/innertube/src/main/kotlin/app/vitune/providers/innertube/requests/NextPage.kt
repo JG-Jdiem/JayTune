@@ -1,12 +1,12 @@
-package app.vitune.providers.innertube.requests
+package app.jaytune.providers.innertube.requests
 
-import app.vitune.providers.innertube.Innertube
-import app.vitune.providers.innertube.models.ContinuationResponse
-import app.vitune.providers.innertube.models.NextResponse
-import app.vitune.providers.innertube.models.bodies.ContinuationBody
-import app.vitune.providers.innertube.models.bodies.NextBody
-import app.vitune.providers.innertube.utils.from
-import app.vitune.providers.utils.runCatchingCancellable
+import app.jaytune.providers.innertube.Innertube
+import app.jaytune.providers.innertube.models.ContinuationResponse
+import app.jaytune.providers.innertube.models.NextResponse
+import app.jaytune.providers.innertube.models.bodies.ContinuationBody
+import app.jaytune.providers.innertube.models.bodies.NextBody
+import app.jaytune.providers.innertube.utils.from
+import app.jaytune.providers.utils.runCatchingCancellable
 import io.ktor.client.call.body
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
