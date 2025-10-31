@@ -1,7 +1,7 @@
-package app.vitune.providers.translate.requests
+package app.jaytune.providers.translate.requests
 
-import app.vitune.providers.translate.Translate
-import app.vitune.providers.translate.models.Language
+import app.jaytune.providers.translate.Translate
+import app.jaytune.providers.translate.models.Language
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.statement.bodyAsText
