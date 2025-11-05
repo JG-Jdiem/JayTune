@@ -54,7 +54,7 @@ align="center">](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/ht
 
 - [**YouTube-Internal-Clients**](https://github.com/zerodytrash/YouTube-Internal-Clients): A Python
   script that discovers hidden YouTube API clients. Just a research project.
-- <!--[**ionicons**](https://github.com/ionic-team/ionicons): Premium hand-crafted icons built by Ionic,
+<!-- - [**ionicons**](https://github.com/ionic-team/ionicons): Premium hand-crafted icons built by Ionic,
   for Ionic apps and web apps everywhere.
 - [**Flaticon: Ilham Fitrotul Hayat**](https://www.flaticon.com/authors/ilham-fitrotul-hayat): the
   app's logo uses a music note icon.-->
