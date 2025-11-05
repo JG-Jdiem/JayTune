@@ -44,8 +44,8 @@ align="center">](https://github.com/25huizengek1/ViTune/releases/latest)
 alt="Get it on F-Droid"
 height="80"
 align="center">](https://repo.jaytune.app/)
-
-[<img src="https://github.com/ImranR98/Obtainium/blob/main/assets/graphics/badge_obtainium.png"
+-->
+<!--[<img src="https://github.com/ImranR98/Obtainium/blob/main/assets/graphics/badge_obtainium.png"
 alt="Get it on Obtainium"
 height="54"
 align="center">](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/25huizengek1/ViTune/)-->
