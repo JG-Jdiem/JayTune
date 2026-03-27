@@ -37,6 +37,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalRippleConfiguration
+import androidx.compose.material3.Text
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -75,6 +76,7 @@ import app.jaytune.android.service.downloadState
 import app.jaytune.android.ui.components.BottomSheetMenu
 import app.jaytune.android.ui.components.rememberBottomSheetState
 import app.jaytune.android.ui.components.themed.LinearProgressIndicator
+import app.jaytune.android.ui.screens.WearOSLayout
 import app.jaytune.android.ui.screens.albumRoute
 import app.jaytune.android.ui.screens.artistRoute
 import app.jaytune.android.ui.screens.home.HomeScreen
@@ -97,6 +99,8 @@ import app.jaytune.android.utils.maybeExitPip
 import app.jaytune.android.utils.setDefaultPalette
 import app.jaytune.android.utils.shouldBePlaying
 import app.jaytune.android.utils.toast
+import app.jaytune.android.utils.isWearOS
+import app.jaytune.android.utils.semiBold
 import app.jaytune.compose.persist.LocalPersistMap
 import app.jaytune.compose.persist.PersistMap
 import app.jaytune.compose.preferences.PreferencesHolder
@@ -289,6 +293,8 @@ class MainActivity : ComponentActivity(), MonetColorsChangedListener {
                 }
             )
 
+            val isWear = isWearOS()
+
             KeyedCrossfade(state = pip) { currentPip ->
                 if (currentPip) Thumbnail(
                     isShowingLyrics = true,
@@ -303,7 +309,24 @@ class MainActivity : ComponentActivity(), MonetColorsChangedListener {
                     shouldShowSynchronizedLyrics = true,
                     setShouldShowSynchronizedLyrics = { },
                     showLyricsControls = false
-                ) else CompositionLocalProvider(
+                ) else if (isWear) {
+                    if (vm.binder?.player?.currentMediaItem != null) {
+                        WearOSLayout(playerBottomSheetState = playerBottomSheetState)
+                    } else {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(LocalAppearance.current.colorPalette.background0),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "No music playing",
+                                style = LocalAppearance.current.typography.l.semiBold,
+                                color = LocalAppearance.current.colorPalette.text
+                            )
+                        }
+                    }
+                } else CompositionLocalProvider(
                     LocalPlayerAwareWindowInsets provides playerAwareWindowInsets
                 ) {
                     val isDownloading by downloadState.collectAsState()

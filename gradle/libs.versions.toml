@@ -9,6 +9,8 @@ room = "2.8.2"
 media3 = "1.8.0"
 ktor = "3.3.1"
 detekt = "1.23.8"
+wear = "1.3.0"
+wearable = "2.9.0"
 workmanager = "2.10.5"
 credentials = "1.5.0"
 coil = "3.3.0"
@@ -56,6 +58,8 @@ exoplayer_workmanager = { module = "androidx.media3:media3-exoplayer-workmanager
 media3_session = { module = "androidx.media3:media3-session", version.ref = "media3" }
 media = { module = "androidx.media:media", version = "1.7.1" }
 
+wear = { module = "androidx.wear:wear", version.ref = "wear" }
+wearable = { module = "com.google.android.wearable:wearable", version.ref = "wearable" }
 workmanager = { module = "androidx.work:work-runtime", version.ref = "workmanager" }
 workmanager_ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workmanager" }
 

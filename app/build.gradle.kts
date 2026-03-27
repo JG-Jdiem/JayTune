@@ -197,4 +197,8 @@ dependencies {
 
     detektPlugins(libs.detekt.compose)
     detektPlugins(libs.detekt.formatting)
+
+    // Wear OS support
+    implementation(libs.wear)
+    compileOnly(libs.wearable)
 }
