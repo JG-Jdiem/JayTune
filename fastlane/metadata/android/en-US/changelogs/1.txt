@@ -1,1 +1,5 @@
+* First official release of JayTune (ViTune Fork)
 * Rebranded to JayTune
+* Restored support for armeabi-v7a (32-bit devices)
+* Fixed several bugs for better stability
+* Improved YouTube audio stream fetching logic
