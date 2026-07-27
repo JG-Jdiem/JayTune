@@ -114,6 +114,7 @@ import app.jaytune.core.ui.utils.isAtLeastAndroid9
 import app.jaytune.core.ui.utils.songBundle
 import app.jaytune.core.ui.utils.streamVolumeFlow
 import app.jaytune.providers.innertube.Innertube
+import app.jaytune.providers.innertube.Innertube.logger
 import app.jaytune.providers.innertube.models.NavigationEndpoint
 import app.jaytune.providers.innertube.models.bodies.PlayerBody
 import app.jaytune.providers.innertube.models.bodies.SearchBody
@@ -1357,7 +1358,7 @@ class PlayerService : InvincibleService(), Player.Listener, PlaybackStatsListene
                         /* position = */ dataSpec.position,
                         /* length = */ chunkLength
                     )
-                    )
+                )
             ) dataSpec
             else uriCache[mediaId]?.let { cachedUri ->
                 dataSpec
@@ -1365,51 +1366,81 @@ class PlayerService : InvincibleService(), Player.Listener, PlaybackStatsListene
                     .ranged(cachedUri.meta)
             } ?: run {
                 val body = runBlocking(Dispatchers.IO) {
-                    Innertube.player(PlayerBody(videoId = mediaId))
+                    Innertube.player(
+                        body = PlayerBody(videoId = mediaId),
+                        useAntiThrottle = PlayerPreferences.useAntiThrottleParams
+                    )
                 }?.getOrNull()
                 val youtubeFormat = body?.streamingData?.highestQualityFormat
 
                 val info = runCatching {
                     Dependencies.runDownload(mediaId)
+                }.onFailure {
+                    logger.error("yt-dlp exception for $mediaId", it)
                 }.mapCatching {
+                    logger.info("yt-dlp raw response: $it")
                     YouTubeDLResponse.fromString(it)
-                }.also { it.exceptionOrNull()?.printStackTrace() }.getOrNull()
-                if (info?.id != mediaId) throw VideoIdMismatchException()
-                val format = info.formats?.firstOrNull { it.formatId == info.formatId }
-
-                val uri =
-                    runCatching { info.url?.toUri() }.getOrNull() ?: throw UnplayableException()
-
-                val mediaItem = runCatching {
-                    runBlocking(Dispatchers.IO) { findMediaItem(mediaId) }
+                }.onFailure {
+                    logger.error("Failed to parse yt-dlp response", it)
                 }.getOrNull()
 
-                transaction {
-                    runCatching {
-                        mediaItem?.let(Database::insert)
-                        Database.insert(
-                            Format(
-                                songId = mediaId,
-                                itag = info.formatId?.toIntOrNull(),
-                                mimeType = youtubeFormat?.mimeType,
-                                bitrate = format?.abr?.let { it * 1000 }?.toLong(),
-                                loudnessDb = body?.playerConfig?.audioConfig?.normalizedLoudnessDb,
-                                contentLength = info.fileSize,
-                                lastModified = youtubeFormat?.lastModified
+                logger.info("yt-dlp result: requested ID = $mediaId, returned ID = ${info?.id}, url = ${info?.url}")
+
+                val useYtDlp = info?.id == mediaId && info.url != null
+
+                if (useYtDlp) {
+                    //if (info?.id != mediaId) throw VideoIdMismatchException()
+                    val format = info.formats?.firstOrNull { it.formatId == info.formatId }
+                    val uri = runCatching { info.url.toUri() }.getOrNull()
+                        ?: throw UnplayableException()
+
+                    val mediaItem = runCatching {
+                        runBlocking(Dispatchers.IO) { findMediaItem(mediaId) }
+                    }.getOrNull()
+
+                    transaction {
+                        runCatching {
+                            mediaItem?.let(Database::insert)
+                            Database.insert(
+                                Format(
+                                    songId = mediaId,
+                                    itag = info.formatId?.toIntOrNull(),
+                                    mimeType = youtubeFormat?.mimeType,
+                                    bitrate = format?.abr?.let { it * 1000 }?.toLong(),
+                                    loudnessDb = body?.playerConfig?.audioConfig?.normalizedLoudnessDb,
+                                    contentLength = info.fileSize,
+                                    lastModified = youtubeFormat?.lastModified
+                                )
                             )
-                        )
+                        }
                     }
+
+                    uriCache.push(
+                        key = mediaId,
+                        meta = info.fileSize,
+                        uri = uri
+                    )
+
+                    dataSpec
+                        .withUri(uri)
+                        .ranged(info.fileSize)
+
+                } else {
+                    logger.warn("yt-dlp failed for $mediaId, falling back to Innertube")
+
+                    val uri = youtubeFormat?.url?.toUri()
+                        ?: throw UnplayableException()
+
+                    uriCache.push(
+                        key = mediaId,
+                        meta = youtubeFormat.contentLength,
+                        uri = uri
+                    )
+
+                    dataSpec
+                        .withUri(uri)
+                        .ranged(youtubeFormat.contentLength)
                 }
-
-                uriCache.push(
-                    key = mediaId,
-                    meta = info.fileSize,
-                    uri = uri
-                )
-
-                dataSpec
-                    .withUri(uri)
-                    .ranged(info.fileSize)
             }
         }.handleUnknownErrors {
             uriCache.clear()

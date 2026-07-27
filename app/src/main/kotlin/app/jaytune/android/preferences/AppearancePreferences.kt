@@ -9,7 +9,7 @@ import app.jaytune.core.ui.ColorSource
 import app.jaytune.core.ui.Darkness
 import app.jaytune.core.ui.ThumbnailRoundness
 
-object AppearancePreferences : GlobalPreferencesHolder() {
+object  AppearancePreferences : GlobalPreferencesHolder() {
     var colorSource by enum(
         when (OldPreferences.oldColorPaletteName) {
             ColorPaletteName.Default, ColorPaletteName.PureBlack -> ColorSource.Default

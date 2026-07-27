@@ -8,7 +8,7 @@ data class PlayerBody(
     val context: Context = Context.DefaultAndroidMusic,
     val videoId: String,
     val playlistId: String? = null,
-    val params: String? = "CgIQBg",
+    val params: String? = null,
     val cpn: String? = null,
     val contentCheckOk: String = "true",
     val racyCheckOn: String = "true",

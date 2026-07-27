@@ -19,6 +19,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.BoxWithConstraintsScope
@@ -85,6 +86,7 @@ import app.jaytune.android.ui.screens.player.Thumbnail
 import app.jaytune.android.ui.screens.playlistRoute
 import app.jaytune.android.ui.screens.searchResultRoute
 import app.jaytune.android.ui.screens.settingsRoute
+import app.jaytune.android.ui.screens.home.WearHomeScreen
 import app.jaytune.android.utils.DisposableListener
 import app.jaytune.android.utils.KeyedCrossfade
 import app.jaytune.android.utils.LocalMonetCompat
@@ -310,21 +312,14 @@ class MainActivity : ComponentActivity(), MonetColorsChangedListener {
                     setShouldShowSynchronizedLyrics = { },
                     showLyricsControls = false
                 ) else if (isWear) {
-                    if (vm.binder?.player?.currentMediaItem != null) {
-                        WearOSLayout(playerBottomSheetState = playerBottomSheetState)
-                    } else {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .background(LocalAppearance.current.colorPalette.background0),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Text(
-                                text = "No music playing",
-                                style = LocalAppearance.current.typography.l.semiBold,
-                                color = LocalAppearance.current.colorPalette.text
-                            )
-                        }
+                    // Layout per Watch
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(LocalAppearance.current.colorPalette.background0)
+                    ) {
+                        // Home screen sempre visibile
+                        WearHomeScreen()
                     }
                 } else CompositionLocalProvider(
                     LocalPlayerAwareWindowInsets provides playerAwareWindowInsets

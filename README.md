@@ -30,7 +30,7 @@
 - Highly customizable (dynamic theme, Material You, ...)
 - Normalize audio for the perfect listening experience
 - Listen from your car using Android Auto
-- Open YouTube/YouTube Music links (`watch`, `playlist`, `channel`, etc.) with ViTune
+- Open YouTube/YouTube Music links (`watch`, `playlist`, `channel`, etc.) with JayTune
 - Ridiculously lightweight APK
 
 ## Installation
@@ -38,7 +38,7 @@
 [<img src="https://github.com/machiav3lli/oandbackupx/blob/034b226cea5c1b30eb4f6a6f313e4dadcbb0ece4/badge_github.png"
 alt="Get it on GitHub"
 height="80"
-align="center">](https://github.com/25huizengek1/ViTune/releases/latest)
+align="center">](https://github.com/25huizengek1/JayTune/releases/latest)
 
 <!--[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
 alt="Get it on F-Droid"
@@ -48,7 +48,7 @@ align="center">](https://repo.jaytune.app/)
 [<img src="https://github.com/ImranR98/Obtainium/blob/main/assets/graphics/badge_obtainium.png"
 alt="Get it on Obtainium"
 height="54"
-align="center">](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/25huizengek1/ViTune/)
+align="center">](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/25huizengek1/JayTune/)
 
 ## Acknowledgments
 

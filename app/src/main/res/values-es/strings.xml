@@ -116,7 +116,7 @@
     <string name="no_browser_installed">No se pudo encontrar una aplicación para navegar por internet</string>
     <string name="no_equalizer_installed">No se pudo encontrar una aplicación para ecualizar audio</string>
     <string name="no_file_chooser_installed">No se pudo encontrar una aplicación para crear documentos</string>
-    <string name="no_battery_optimization_settings_found">No se pudo encontrar la configuración de optimización de batería, por favor añade ViTune a la lista blanca manualmente</string>
+    <string name="no_battery_optimization_settings_found">No se pudo encontrar la configuración de optimización de batería, por favor añade JayTune a la lista blanca manualmente</string>
     <string name="related_albums">Álbumes relacionados</string>
     <string name="similar_artists">Artistas similares</string>
     <string name="recommended_playlists">Listas de reproducción que te pueden gustar</string>
@@ -228,7 +228,7 @@
     <string name="backup_description">Se excluyen las preferencias personales (es decir, el modo de tema) y la caché.</string>
     <string name="backup_action_description">Exportar la base de datos al almacenamiento externo</string>
     <string name="restore">Restaurar copia de seguridad</string>
-    <string name="restore_warning">Los datos existentes se sobrescribirán.\nViTune se cerrará automáticamente después de restaurar la base de datos.</string>
+    <string name="restore_warning">Los datos existentes se sobrescribirán. JayTune se cerrará automáticamente después de restaurar la base de datos.</string>
     <string name="restore_description">Importar la base de datos desde el almacenamiento externo</string>
     <string name="other">Otros</string>
     <string name="android_auto">Android Auto</string>
@@ -287,6 +287,7 @@
     <string name="bass_boost_level_description">Nivel (0–1000) de refuerzo de frecuencias bajas; ¡usar bajo tu propio riesgo!</string>
     <string name="sponsor_block">Sponsorblock</string>
     <string name="sponsor_block_description">Salta contenido patrocinado/fuera de tema usando los datos de la API de Sponsorblock</string>
+    <string name="anti_throttle_description">Utilizar el parámetro anti-throttle</string>
     <string name="reverb">Reverberación</string>
     <string name="audio_focus">Enfoque de audio</string>
     <string name="audio_focus_description">Si el reproductor debe solicitar el enfoque de audio (multimedia) en todo el sistema</string>
@@ -306,7 +307,7 @@
     <string name="username">Nombre de usuario</string>
     <string name="password">Contraseña</string>
     <string name="login">Iniciar sesión</string>
-    <string name="sync_description">Puedes alojar listas de reproducción en otro lugar y sincronizarlas con ViTune. Actualmente solo admite Piped.</string>
+    <string name="sync_description">Puedes alojar listas de reproducción en otro lugar y sincronizarlas con JayTune. Actualmente solo admite Piped.</string>
     <string name="add_account">Añadir cuenta</string>
     <string name="add_account_description">Vincula una cuenta de Piped con tu instancia, nombre de usuario y contraseña.</string>
     <string name="learn_more">Más información</string>
@@ -376,4 +377,5 @@
         <item quantity="many">%1$d canciones</item>
         <item quantity="other">%1$d canciones</item>
     </plurals>
+    <string name="anti_throttle">Omite el error 403</string>
 </resources>

@@ -64,10 +64,18 @@ private val PlayerResponse.isValid
 
 suspend fun Innertube.player(
     body: PlayerBody,
-    checkIsValid: Boolean = true
+    checkIsValid: Boolean = true,
+    useAntiThrottle: Boolean = true
 ): Result<PlayerResponse?>? = runCatchingCancellable {
+
+    val finalBody = if (useAntiThrottle) {
+        body.copy(params = "CgIQBg")
+    } else {
+        body
+    }
+
     tryContexts(
-        body = body,
+        body = finalBody,
         checkIsValid = checkIsValid,
         Context.DefaultIOS,
         Context.DefaultWeb,

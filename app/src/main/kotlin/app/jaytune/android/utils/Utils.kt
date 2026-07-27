@@ -148,8 +148,17 @@ fun String?.thumbnail(
 ): String? {
     val actualSize = size.coerceAtMost(maxSize)
     return when {
-        this?.startsWith("https://lh3.googleusercontent.com") == true -> "$this-w$actualSize-h$actualSize"
-        this?.startsWith("https://yt3.ggpht.com") == true -> "$this-w$actualSize-h$actualSize-s$actualSize"
+        this?.startsWith("https://lh3.googleusercontent.com") == true ->
+            this.substringBeforeLast("=") + "=w$actualSize-h$actualSize"
+        this?.startsWith("https://yt3.googleusercontent.com") == true ->
+            this.substringBeforeLast("=") + "=w$actualSize-h$actualSize"
+        this?.startsWith("https://yt3.ggpht.com") == true ->
+            "$this-w$actualSize-h$actualSize-s$actualSize"
+        this?.startsWith("https://i.ytimg.com") == true -> {
+            this.replace("mqdefault", "hqdefault")
+                .replace("sddefault", "hqdefault")
+                .replace("/default.jpg", "/hqdefault.jpg")
+        }
         else -> this
     }
 }

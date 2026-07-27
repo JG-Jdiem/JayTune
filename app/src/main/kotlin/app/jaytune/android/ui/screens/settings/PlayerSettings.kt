@@ -165,6 +165,13 @@ fun PlayerSettings() = with(PlayerPreferences) {
                 }
             )
 
+            SwitchSettingsEntry(
+                title = "Use anti-throttle parameter",
+                text = "Bypass YouTube 403 errors",
+                isChecked = useAntiThrottleParams,
+                onCheckedChange = { useAntiThrottleParams = it }
+            )
+
             EnumValueSelectorSettingsEntry(
                 title = stringResource(R.string.reverb),
                 selectedValue = reverb,
