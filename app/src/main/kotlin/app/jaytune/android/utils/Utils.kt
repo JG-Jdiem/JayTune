@@ -150,8 +150,10 @@ fun String?.thumbnail(
     return when {
         this?.startsWith("https://lh3.googleusercontent.com") == true ->
             this.substringBeforeLast("=") + "=w$actualSize-h$actualSize"
-        this?.startsWith("https://yt3.googleusercontent.com") == true ->
-            this.substringBeforeLast("=") + "=w$actualSize-h$actualSize"
+        this?.startsWith("https://yt3.googleusercontent.com") == true -> {
+            val base = this.substringBeforeLast('=')
+            "$base=s$actualSize"
+        }
         this?.startsWith("https://yt3.ggpht.com") == true ->
             "$this-w$actualSize-h$actualSize-s$actualSize"
         this?.startsWith("https://i.ytimg.com") == true -> {

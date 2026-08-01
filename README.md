@@ -25,6 +25,7 @@
 - Search for songs, albums, artists videos and playlists
 - Discover new songs by mood/genre
 - Import playlists from YouTube
+- Import playlists from Spotify
 - Fetch, display and edit songs lyrics or synchronized lyrics
 - Manage your playlists locally or synchronize with the cloud
 - Highly customizable (dynamic theme, Material You, ...)

@@ -54,6 +54,7 @@ import app.jaytune.providers.piped.models.Instance
 import io.ktor.http.Url
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
+import app.jaytune.android.ui.components.SpotifyImportDialog
 
 @Route
 @Composable
@@ -263,8 +264,24 @@ fun SyncSettings(
         }
     )
 
+    var showSpotifyImport by rememberSaveable { mutableStateOf(false) }
+    if (showSpotifyImport) {
+        SpotifyImportDialog(
+            onDismiss = { showSpotifyImport = false },
+            onImportComplete = { showSpotifyImport = false }
+        )
+    }
+
     SettingsCategoryScreen(title = stringResource(R.string.sync)) {
         SettingsDescription(text = stringResource(R.string.sync_description))
+
+        SettingsGroup(title = stringResource(R.string.spotify)) {
+            SettingsEntry(
+                title = stringResource(R.string.spotify_import_title),
+                text = stringResource(R.string.spotify_import_description),
+                onClick = { showSpotifyImport = true }
+            )
+        }
 
         SettingsGroup(title = stringResource(R.string.piped)) {
             SettingsEntry(

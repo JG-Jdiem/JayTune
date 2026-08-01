@@ -366,6 +366,22 @@
     <string name="base_api_url">URL API istanza</string>
     <string name="piped_session_created_successfully">Sessione Piped creata con successo</string>
 
+    <string name="spotify">Spotify</string>
+    <string name="spotify_import_title">Importa da Spotify</string>
+    <string name="spotify_import_description">Trasferisci le tue playlist tramite Exportify</string>
+    <string name="spotify_import_guide_title">Importa playlist da Spotify</string>
+    <string name="spotify_import_guide_description">Spotify limita l\'accesso diretto alle playlist per le app indie. Usiamo Exportify, un tool open source che esporta i tuoi brani in un file CSV.</string>
+    <string name="spotify_step_1">1. Apri Exportify e fai login con Spotify</string>
+    <string name="spotify_step_2">2. Scarica il CSV della playlist che vuoi importare</string>
+    <string name="spotify_step_3">3. Torna qui e carica il file</string>
+    <string name="spotify_open_exportify">Apri Exportify</string>
+    <string name="spotify_upload_csv">Carica file CSV</string>
+    <string name="spotify_upload_csv_description">Seleziona il file .csv scaricato da Exportify</string>
+    <string name="spotify_close">Chiudi</string>
+    <string name="spotify_importing">Importazione: %1$s</string>
+    <string name="spotify_tracks">brani</string>
+    <string name="default_imported_playlist_name">Playlist Importata</string>
+
     <string name="seek_bar_style">Stile barra di riproduzione</string>
     <string name="static_seek_bar_name">Statica</string>
     <string name="wavy_seek_bar_name">Ondulata</string>

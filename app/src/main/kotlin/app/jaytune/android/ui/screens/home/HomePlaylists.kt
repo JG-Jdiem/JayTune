@@ -62,6 +62,7 @@ import app.jaytune.providers.piped.models.Session
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.async
 import app.jaytune.providers.piped.models.PlaylistPreview as PipedPlaylistPreview
+import app.jaytune.android.ui.components.SpotifyImportDialog
 
 @Route
 @Composable
@@ -74,7 +75,6 @@ fun HomePlaylists(
     val (colorPalette) = LocalAppearance.current
 
     var isCreatingANewPlaylist by rememberSaveable { mutableStateOf(false) }
-
     if (isCreatingANewPlaylist) TextFieldDialog(
         hintText = stringResource(R.string.enter_playlist_name_prompt),
         onDismiss = { isCreatingANewPlaylist = false },
@@ -84,6 +84,15 @@ fun HomePlaylists(
             }
         }
     )
+
+    var showSpotifyImport by rememberSaveable { mutableStateOf(false) }
+    if (showSpotifyImport) {
+        SpotifyImportDialog(
+            onDismiss = { showSpotifyImport = false },
+            onImportComplete = { showSpotifyImport = false }
+        )
+    }
+
     var items by persistList<PlaylistPreview>("home/playlists")
     var pipedSessions by persist<Map<PipedSession, List<PipedPlaylistPreview>?>>("home/piped")
 
@@ -249,6 +258,20 @@ fun HomePlaylists(
                     modifier = Modifier
                         .clickable(onClick = { onPlaylistClick(playlistPreview.playlist) })
                         .animateItem(fadeInSpec = null, fadeOutSpec = null)
+                )
+            }
+
+            item(key = "import-spotify") {
+                PlaylistItem(
+                    icon = R.drawable.download,
+                    colorTint = colorPalette.textDisabled,
+                    name = stringResource(R.string.spotify_import_title),
+                    songCount = null,
+                    thumbnailSize = Dimensions.thumbnails.playlist,
+                    alternative = UIStatePreferences.playlistsAsGrid,
+                    modifier = Modifier
+                        .animateItem(fadeInSpec = null, fadeOutSpec = null)
+                        .clickable { showSpotifyImport = true }
                 )
             }
 

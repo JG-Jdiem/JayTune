@@ -20,7 +20,7 @@ val clean by tasks.registering(Delete::class) {
 
 allprojects {
     group = "app.jaytune"
-    version = "1.2.1"
+    version = "1.2.2"
 
     apply(plugin = "io.gitlab.arturbosch.detekt")
 

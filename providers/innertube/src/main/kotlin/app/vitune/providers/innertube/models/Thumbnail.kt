@@ -15,6 +15,10 @@ data class Thumbnail(
         return when {
             url.startsWith("https://lh3.googleusercontent.com") -> "$url-w$size-h$size"
             url.startsWith("https://yt3.ggpht.com") -> "$url-s$size"
+            url.startsWith("https://yt3.googleusercontent.com") -> {
+                val cleanUrl = url.substringBeforeLast('=')
+                "$cleanUrl=s$size"
+            }
             url.startsWith("https://i.ytimg.com") -> {
                 val result = url.replace("mqdefault", "hqdefault")
                     .replace("sddefault", "hqdefault")

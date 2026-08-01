@@ -430,7 +430,7 @@ interface Database {
         """
         SELECT thumbnailUrl FROM Song
         JOIN SongPlaylistMap ON id = songId
-        WHERE playlistId = :id
+        WHERE playlistId = :id AND thumbnailUrl IS NOT NULL
         ORDER BY position
         LIMIT 4
         """
