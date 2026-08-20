@@ -1,0 +1,3 @@
+• Improved YouTube playback stability
+• Added a new fallback for audio streams
+• Reduced bot detection and stream loading errors
