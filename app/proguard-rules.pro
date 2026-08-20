@@ -47,3 +47,7 @@
 -dontwarn jdk.dynalink.**
 -dontwarn org.mozilla.javascript.JavaToJSONConverters
 -dontwarn org.mozilla.javascript.tools.**
+
+# Rhino ships an optional JSR-223 desktop adapter. Android does not provide
+# javax.script and JayTune uses Rhino directly, not through ScriptEngine.
+-dontwarn javax.script.**
