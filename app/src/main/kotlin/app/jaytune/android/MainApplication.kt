@@ -68,6 +68,8 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.work.Configuration
 import app.jaytune.android.BuildConfig
+import app.jaytune.android.morideobfuscator.MoriCipherConfig
+import app.jaytune.android.morideobfuscator.MoriCipherRuntime
 import app.jaytune.android.R
 import app.jaytune.android.preferences.AppearancePreferences
 import app.jaytune.android.preferences.DataPreferences
@@ -88,6 +90,7 @@ import app.jaytune.android.ui.screens.searchResultRoute
 import app.jaytune.android.ui.screens.settingsRoute
 import app.jaytune.android.ui.screens.home.WearHomeScreen
 import app.jaytune.android.utils.DisposableListener
+import app.jaytune.android.utils.potoken.BotGuardTokenGenerator
 import app.jaytune.android.utils.KeyedCrossfade
 import app.jaytune.android.utils.LocalMonetCompat
 import app.jaytune.android.utils.asMediaItem
@@ -545,6 +548,10 @@ class MainApplication : Application(), SingletonImageLoader.Factory, Configurati
         super.onCreate()
 
         Dependencies.init(this)
+        BotGuardTokenGenerator.initialize(this)
+        MoriCipherRuntime.initialize(
+            MoriCipherConfig(cacheDirectory = cacheDir.resolve("mori_cipher"))
+        )
         MonetCompat.enablePaletteCompat()
         ServiceNotifications.createAll()
     }

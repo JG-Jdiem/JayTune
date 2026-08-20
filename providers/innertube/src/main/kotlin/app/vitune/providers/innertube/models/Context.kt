@@ -20,6 +20,7 @@ import java.util.Locale
 data class Context(
     val client: Client,
     val thirdParty: ThirdParty? = null,
+    val request: Request = Request(),
     val user: User? = User()
 ) {
     @Serializable
@@ -97,7 +98,12 @@ data class Context(
             userAgent?.let { userAgent(it) }
 
             headers {
-                referer?.let { set("Referer", it) }
+                set("Content-Type", "application/json")
+                set("X-Goog-Api-Format-Version", "1")
+                referer?.let {
+                    set("Referer", it)
+                    set("X-Origin", it.trimEnd('/'))
+                }
                 set("X-Youtube-Bootstrap-Logged-In", "false")
                 set("X-YouTube-Client-Name", clientId.toString())
                 set("X-YouTube-Client-Version", clientVersion)
@@ -107,6 +113,7 @@ data class Context(
 
             parameters {
                 apiKey?.let { set("key", it) }
+                set("prettyPrint", "false")
             }
         }
 
@@ -138,6 +145,12 @@ data class Context(
     )
 
     @Serializable
+    data class Request(
+        val internalExperimentFlags: List<String> = emptyList(),
+        val useSsl: Boolean = true
+    )
+
+    @Serializable
     data class User(
         val lockedSafetyMode: Boolean = false
     )
@@ -162,18 +175,40 @@ data class Context(
                     )
                 )
             }
-        const val DEFAULT_VISITOR_DATA = "CgtsZG1ySnZiQWtSbyiMjuGSBg%3D%3D"
 
+        const val DEFAULT_VISITOR_DATA = "CgtsZG1ySnZiQWtSbyiMjuGSBg%3D%3D"
+        private const val MUSIC_REFERER = "https://music.youtube.com/"
+        private const val TV_REFERER = "https://www.youtube.com/tv"
+
+        /** The metadata client and first stream candidate, exactly as ArchiveTune v14.1.0. */
         val DefaultWeb get() = DefaultWebNoLang.withLang
 
         val DefaultWebNoLang = Context(
             client = Client(
                 clientId = 67,
                 clientName = "WEB_REMIX",
-                clientVersion = "1.20220606.03.00",
-                platform = "DESKTOP",
-                userAgent = UserAgents.DESKTOP,
-                referer = "https://music.youtube.com/",
+                clientVersion = "1.20260213.01.00",
+                userAgent = UserAgents.WEB_REMIX,
+                referer = MUSIC_REFERER,
+                music = true
+            )
+        )
+
+        /** Compatibility alias for existing browse and BotGuard callers. */
+        val DefaultWebToken get() = DefaultWeb
+
+        val DefaultAndroidVr = Context(
+            client = Client(
+                clientId = 28,
+                clientName = "ANDROID_VR",
+                clientVersion = "1.65.10",
+                osName = "Android",
+                osVersion = "12L",
+                deviceMake = "Oculus",
+                deviceModel = "Quest 3",
+                androidSdkVersion = 32,
+                userAgent = UserAgents.ANDROID_VR_165,
+                referer = MUSIC_REFERER,
                 music = true
             )
         )
@@ -182,15 +217,14 @@ data class Context(
             client = Client(
                 clientId = 5,
                 clientName = "IOS",
-                clientVersion = "20.03.02",
+                clientVersion = "19.29.1",
+                osName = "iOS",
+                osVersion = "17.5.1.21F90",
                 deviceMake = "Apple",
                 deviceModel = "iPhone16,2",
-                osName = "iPhone",
-                osVersion = "18.2.1.22C161",
-                acceptHeader = "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
                 userAgent = UserAgents.IOS,
-                apiKey = "AIzaSyB-63vPrdThhKuerbB2N_l7Kwwcxj6yUAc",
-                music = false
+                referer = MUSIC_REFERER,
+                music = true
             )
         )
 
@@ -198,14 +232,15 @@ data class Context(
             client = Client(
                 clientId = 3,
                 clientName = "ANDROID",
-                clientVersion = "19.44.38",
+                clientVersion = "21.10.38",
                 osName = "Android",
-                osVersion = "11",
-                platform = "MOBILE",
-                androidSdkVersion = 30,
+                osVersion = "15",
+                deviceMake = "Google",
+                deviceModel = "Pixel 9 Pro",
+                androidSdkVersion = 35,
                 userAgent = UserAgents.ANDROID,
-                apiKey = "AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w",
-                music = false
+                referer = MUSIC_REFERER,
+                music = true
             )
         )
 
@@ -214,28 +249,194 @@ data class Context(
                 clientId = 21,
                 clientName = "ANDROID_MUSIC",
                 clientVersion = "7.27.52",
-                platform = "MOBILE",
-                osVersion = "11",
-                androidSdkVersion = 30,
+                osName = "Android",
+                osVersion = "15",
+                deviceMake = "Google",
+                deviceModel = "Pixel 9 Pro",
+                androidSdkVersion = 35,
                 userAgent = UserAgents.ANDROID_MUSIC,
-                apiKey = "AIzaSyAOghZGza2MQSZkY_zfZ370N-PUdXEo8AI",
+                referer = MUSIC_REFERER,
                 music = true
             )
         )
 
-        val DefaultTV = Context(
+        val DefaultIOSMusic = Context(
+            client = Client(
+                clientId = 26,
+                clientName = "IOS_MUSIC",
+                clientVersion = "7.27.0",
+                osName = "iOS",
+                osVersion = "17.5.1.21F90",
+                deviceMake = "Apple",
+                deviceModel = "iPhone16,2",
+                userAgent = UserAgents.IOS_MUSIC,
+                referer = MUSIC_REFERER,
+                music = true
+            )
+        )
+
+        val DefaultAndroidCreator = Context(
+            client = Client(
+                clientId = 14,
+                clientName = "ANDROID_CREATOR",
+                clientVersion = "23.47.101",
+                osName = "Android",
+                osVersion = "15",
+                deviceMake = "Google",
+                deviceModel = "Pixel 9 Pro Fold",
+                androidSdkVersion = 35,
+                userAgent = UserAgents.ANDROID_CREATOR,
+                referer = MUSIC_REFERER,
+                music = true
+            )
+        )
+
+        val DefaultAndroidTestSuite = Context(
+            client = Client(
+                clientId = 30,
+                clientName = "ANDROID_TESTSUITE",
+                clientVersion = "1.9",
+                osName = "Android",
+                osVersion = "15",
+                deviceMake = "Google",
+                deviceModel = "Pixel 9 Pro",
+                androidSdkVersion = 35,
+                userAgent = UserAgents.ANDROID_TESTSUITE,
+                referer = MUSIC_REFERER,
+                music = true
+            )
+        )
+
+        val DefaultAndroidUnplugged = Context(
+            client = Client(
+                clientId = 29,
+                clientName = "ANDROID_UNPLUGGED",
+                clientVersion = "8.49.0",
+                osName = "Android",
+                osVersion = "15",
+                deviceMake = "Google",
+                deviceModel = "Pixel 9 Pro",
+                androidSdkVersion = 35,
+                userAgent = UserAgents.ANDROID_UNPLUGGED,
+                referer = MUSIC_REFERER,
+                music = true
+            )
+        )
+
+        val DefaultIPadOS = Context(
+            client = Client(
+                clientId = 5,
+                clientName = "IOS",
+                clientVersion = "19.22.3",
+                osName = "iPadOS",
+                osVersion = "17.7.10.21H450",
+                deviceMake = "Apple",
+                deviceModel = "iPad7,6",
+                userAgent = UserAgents.IPADOS,
+                referer = MUSIC_REFERER,
+                music = true
+            )
+        )
+
+        /** ArchiveTune’s working native fallback after WEB_REMIX / Android VR. */
+        val DefaultVisionOS = Context(
+            client = Client(
+                clientId = 101,
+                clientName = "VISIONOS",
+                clientVersion = "0.1",
+                osName = "visionOS",
+                osVersion = "1.3.21O771",
+                deviceMake = "Apple",
+                deviceModel = "RealityDevice14,1",
+                userAgent = UserAgents.VISIONOS,
+                referer = MUSIC_REFERER,
+                music = true
+            )
+        )
+
+        val DefaultTv = Context(
             client = Client(
                 clientId = 7,
                 clientName = "TVHTML5",
-                clientVersion = "7.20241201.18.00",
+                clientVersion = "7.20260114.00.00",
                 platform = "TV",
                 userAgent = UserAgents.TV,
-                referer = "https://www.youtube.com/",
+                referer = TV_REFERER,
                 music = false
+            )
+        )
+
+        val DefaultTvEmbedded = Context(
+            client = Client(
+                clientId = 85,
+                clientName = "TVHTML5_SIMPLY_EMBEDDED_PLAYER",
+                clientVersion = "2.0",
+                platform = "TV",
+                userAgent = UserAgents.TV_EMBEDDED,
+                referer = TV_REFERER,
+                music = false
+            )
+        )
+
+        val DefaultWebPrimary = Context(
+            client = Client(
+                clientId = 1,
+                clientName = "WEB",
+                clientVersion = "2.20260114.00.00",
+                userAgent = UserAgents.WEB,
+                referer = MUSIC_REFERER,
+                music = true
+            )
+        )
+
+        val DefaultWebCreator = Context(
+            client = Client(
+                clientId = 62,
+                clientName = "WEB_CREATOR",
+                clientVersion = "1.20260114.00.00",
+                userAgent = UserAgents.WEB,
+                referer = MUSIC_REFERER,
+                music = true
             )
         )
     }
 }
+
+/**
+ * ArchiveTune’s `PlaybackAuthState.needsServiceIntegrity` policy.  It is shared
+ * by player requests and post-resolution GVS URL handling so they cannot drift.
+ */
+fun Context.Client.requiresServiceIntegrity(): Boolean = when (clientName.uppercase(Locale.US)) {
+    "WEB",
+    "WEB_REMIX",
+    "WEB_CREATOR",
+    "MWEB",
+    "WEB_EMBEDDED_PLAYER",
+    "TVHTML5",
+    "TVHTML5_SIMPLY_EMBEDDED_PLAYER",
+    "TVHTML5_SIMPLY" -> true
+
+    else -> false
+}
+
+/** ArchiveTune sends a signature timestamp only with these client identities. */
+internal fun Context.Client.usesSignatureTimestamp(): Boolean = when (clientName.uppercase(Locale.US)) {
+    "WEB",
+    "WEB_REMIX",
+    "WEB_CREATOR",
+    "ANDROID",
+    "ANDROID_MUSIC",
+    "ANDROID_CREATOR",
+    "ANDROID_UNPLUGGED",
+    "TVHTML5",
+    "TVHTML5_SIMPLY_EMBEDDED_PLAYER" -> true
+
+    else -> false
+}
+
+internal fun Context.Client.isEmbeddedPlayer(): Boolean =
+    clientName.equals("TVHTML5_SIMPLY_EMBEDDED_PLAYER", ignoreCase = true) ||
+        clientName.equals("WEB_EMBEDDED_PLAYER", ignoreCase = true)
 
 // @formatter:off
 @Suppress("MaximumLineLength")
@@ -249,12 +450,32 @@ val validCountryCodes =
 
 @Suppress("MaximumLineLength")
 object UserAgents {
-    const val DESKTOP =
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36"
-    const val ANDROID = "com.google.android.youtube/19.44.38 (Linux; U; Android 11) gzip"
+    const val WEB_REMIX =
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:140.0) Gecko/20100101 Firefox/140.0"
+    const val WEB =
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+    const val ANDROID =
+        "com.google.android.youtube/21.10.38 (Linux; U; Android 15; en_US; Pixel 9 Pro; Build/AP4A.250205.002; Cronet/132.0.6834.79) gzip"
     const val ANDROID_MUSIC =
-        "com.google.android.apps.youtube.music/7.27.52 (Linux; U; Android 11) gzip"
-    const val PLAYSTATION = "Mozilla/5.0 (PlayStation 4 5.55) AppleWebKit/601.2 (KHTML, like Gecko)"
-    const val IOS = "com.google.ios.youtube/20.03.02 (iPhone16,2; U; CPU iOS 18_2_1 like Mac OS X;)"
-    const val TV = "Mozilla/5.0 (ChromiumStylePlatform) Cobalt/Version"
+        "com.google.android.apps.youtube.music/7.27.52 (Linux; U; Android 15; en_US; Pixel 9 Pro; Build/AP4A.250205.002; Cronet/132.0.6834.79) gzip"
+    const val ANDROID_VR_165 =
+        "com.google.android.apps.youtube.vr.oculus/1.65.10 (Linux; U; Android 12L; eureka-user Build/SQ3A.220605.009.A1) gzip"
+    const val ANDROID_CREATOR =
+        "com.google.android.apps.youtube.creator/23.47.101 (Linux; U; Android 15; en_US; Pixel 9 Pro Fold; Build/AP3A.241005.015.A2; Cronet/132.0.6779.0)"
+    const val ANDROID_TESTSUITE =
+        "com.google.android.youtube/1.9 (Linux; U; Android 15; en_US; Pixel 9 Pro; Build/AP4A.250205.002) gzip"
+    const val ANDROID_UNPLUGGED =
+        "com.google.android.apps.youtube.unplugged/8.49.0 (Linux; U; Android 15; en_US; Pixel 9 Pro; Build/AP4A.250205.002; Cronet/132.0.6834.79) gzip"
+    const val IOS =
+        "com.google.ios.youtube/19.29.1 (iPhone16,2; U; CPU iOS 17_5_1 like Mac OS X;)"
+    const val IOS_MUSIC =
+        "com.google.ios.youtubemusic/7.27.0 (iPhone16,2; U; CPU iOS 17_5_1 like Mac OS X;)"
+    const val IPADOS =
+        "com.google.ios.youtube/19.22.3 (iPad7,6; U; CPU iPadOS 17_7_10 like Mac OS X; en-US)"
+    const val VISIONOS =
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15"
+    const val TV =
+        "Mozilla/5.0(SMART-TV; Linux; Tizen 4.0.0.2) AppleWebkit/605.1.15 (KHTML, like Gecko) SamsungBrowser/9.2 TV Safari/605.1.15"
+    const val TV_EMBEDDED =
+        "Mozilla/5.0 (PlayStation; PlayStation 4/12.02) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Safari/605.1.15"
 }

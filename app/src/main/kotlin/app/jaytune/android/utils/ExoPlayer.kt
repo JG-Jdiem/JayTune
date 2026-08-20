@@ -3,6 +3,7 @@
 package app.jaytune.android.utils
 
 import android.content.Context
+import android.net.Uri
 import android.util.Log
 import androidx.annotation.OptIn
 import androidx.media3.common.C
@@ -11,12 +12,15 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.datasource.DataSource
 import androidx.media3.datasource.DataSpec
 import androidx.media3.datasource.DefaultDataSource
-import androidx.media3.datasource.DefaultHttpDataSource
+import androidx.media3.datasource.TransferListener
 import androidx.media3.datasource.HttpDataSource.InvalidResponseCodeException
+import androidx.media3.datasource.okhttp.OkHttpDataSource
 import androidx.media3.datasource.ResolvingDataSource
 import androidx.media3.datasource.cache.Cache
 import androidx.media3.datasource.cache.CacheDataSource
 import java.io.EOFException
+import java.util.concurrent.TimeUnit
+import okhttp3.OkHttpClient
 import kotlin.math.pow
 
 class RangeHandlerDataSourceFactory(private val parent: DataSource.Factory) : DataSource.Factory {
@@ -108,52 +112,75 @@ fun DataSource.Factory.withFallback(
 ) = withFallback(ResolvingDataSource.Factory(DefaultDataSource.Factory(context), resolver))
 
 class RetryingDataSourceFactory(
-    private val parent: DataSource.Factory,
+    private val parentFactory: DataSource.Factory,
     private val maxRetries: Int,
     private val printStackTrace: Boolean,
     private val exponential: Boolean,
     private val predicate: (Throwable) -> Boolean
 ) : DataSource.Factory {
-    inner class Source(private val parent: DataSource) : DataSource by parent {
+    /**
+     * A failed Media3 source may remain open internally. Each retry must therefore
+     * create a new complete source chain, so ResolvingDataSource can resolve a
+     * fresh Googlevideo URL instead of reopening an invalid CacheDataSource.
+     */
+    inner class Source : DataSource {
+        private val transferListeners = mutableSetOf<TransferListener>()
+        private var parent = parentFactory.createDataSource()
+
+        override fun addTransferListener(transferListener: TransferListener) {
+            transferListeners += transferListener
+            parent.addTransferListener(transferListener)
+        }
+
         override fun open(dataSpec: DataSpec): Long {
-            var lastException: Throwable? = null
-            var retries = 0
-            while (retries < maxRetries) {
-                if (retries > 0) Log.d(TAG, "Retry $retries of $maxRetries fetching datasource")
+            var retryCount = 0
+
+            while (true) {
+                if (retryCount > 0) Log.d(TAG, "Retry $retryCount of $maxRetries fetching datasource")
 
                 @Suppress("TooGenericExceptionCaught")
-                return try {
-                    parent.open(dataSpec)
+                try {
+                    return parent.open(dataSpec)
                 } catch (ex: Throwable) {
-                    lastException = ex
                     if (printStackTrace) Log.e(
                         /* tag = */ TAG,
                         /* msg = */ "Exception caught by retry mechanism",
                         /* tr = */ ex
                     )
-                    if (predicate(ex)) {
-                        val time = if (exponential) 1000L * 2.0.pow(retries).toLong() else 2500L
-                        Log.d(TAG, "Retry policy accepted retry, sleeping for $time milliseconds")
-                        Thread.sleep(time)
-                        retries++
-                        continue
+
+                    if (!predicate(ex)) {
+                        Log.e(TAG, "Retry policy declined retry, throwing the exception...")
+                        throw ex
                     }
-                    Log.e(
-                        TAG,
-                        "Retry policy declined retry, throwing the last exception..."
-                    )
-                    throw ex
+
+                    if (retryCount >= maxRetries) {
+                        Log.e(TAG, "Max retries $maxRetries exceeded, throwing the exception...")
+                        throw ex
+                    }
+
+                    runCatching { parent.close() }
+                    parent = parentFactory.createDataSource().also { freshSource ->
+                        transferListeners.forEach(freshSource::addTransferListener)
+                    }
+
+                    retryCount++
+                    val time = if (exponential) 1000L * 2.0.pow(retryCount - 1).toLong() else 2500L
+                    Log.d(TAG, "Retry policy accepted retry, sleeping for $time milliseconds")
+                    Thread.sleep(time)
                 }
             }
-            Log.e(
-                TAG,
-                "Max retries $maxRetries exceeded, throwing the last exception..."
-            )
-            throw lastException!!
         }
+
+        override fun read(buffer: ByteArray, offset: Int, length: Int) = parent.read(buffer, offset, length)
+
+        override fun getUri(): Uri? = parent.uri
+
+        override fun getResponseHeaders(): Map<String, List<String>> = parent.responseHeaders
+
+        override fun close() = parent.close()
     }
 
-    override fun createDataSource() = Source(parent.createDataSource())
+    override fun createDataSource() = Source()
 }
 
 inline fun <reified T : Throwable> DataSource.Factory.retryIf(
@@ -173,10 +200,42 @@ fun DataSource.Factory.retryIf(
 
 val Cache.asDataSource get() = CacheDataSource.Factory().setCache(this)
 
+private const val ANDROID_VR_USER_AGENT =
+    "com.google.android.apps.youtube.vr.oculus/1.65.10 " +
+        "(Linux; U; Android 12L; eureka-user Build/SQ3A.220605.009.A1) gzip"
+
+/**
+ * Googlevideo validates the complete native-client request profile. Applying it
+ * in an OkHttp interceptor happens after Media3 has built each request, so it
+ * also covers byte-range reads, redirects, and retries.
+ */
+private val youtubeMediaOkHttpClient by lazy {
+    OkHttpClient.Builder()
+        .followRedirects(true)
+        .followSslRedirects(true)
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .readTimeout(30, TimeUnit.SECONDS)
+        .addInterceptor { chain ->
+            val request = chain.request()
+            val client = request.url.queryParameter("c").orEmpty()
+
+            if (client.startsWith("ANDROID_VR", ignoreCase = true)) {
+                chain.proceed(
+                    request.newBuilder()
+                        .header("User-Agent", ANDROID_VR_USER_AGENT)
+                        .removeHeader("Origin")
+                        .removeHeader("Referer")
+                        .build()
+                )
+            } else {
+                chain.proceed(request)
+            }
+        }
+        .build()
+}
+
 val Context.defaultDataSource
     get() = DefaultDataSource.Factory(
         this,
-        DefaultHttpDataSource.Factory().setConnectTimeoutMs(16000)
-            .setReadTimeoutMs(8000)
-            .setUserAgent("Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0")
+        OkHttpDataSource.Factory(youtubeMediaOkHttpClient)
     )

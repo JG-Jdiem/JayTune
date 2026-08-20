@@ -94,8 +94,10 @@ import app.jaytune.android.utils.get
 import app.jaytune.android.utils.handleUnknownErrors
 import app.jaytune.android.utils.intent
 import app.jaytune.android.utils.mediaItems
+import app.jaytune.android.utils.potoken.BotGuardTokenGenerator
 import app.jaytune.android.utils.progress
 import app.jaytune.android.utils.readOnlyWhen
+import app.jaytune.android.utils.retryIf
 import app.jaytune.android.utils.setPlaybackPitch
 import app.jaytune.android.utils.shouldBePlaying
 import app.jaytune.android.utils.thumbnail
@@ -115,7 +117,10 @@ import app.jaytune.core.ui.utils.songBundle
 import app.jaytune.core.ui.utils.streamVolumeFlow
 import app.jaytune.providers.innertube.Innertube
 import app.jaytune.providers.innertube.Innertube.logger
+import app.jaytune.providers.innertube.models.Context as InnerTubeContext
 import app.jaytune.providers.innertube.models.NavigationEndpoint
+import app.jaytune.providers.innertube.models.PlayerResponse
+import app.jaytune.providers.innertube.models.requiresServiceIntegrity
 import app.jaytune.providers.innertube.models.bodies.PlayerBody
 import app.jaytune.providers.innertube.models.bodies.SearchBody
 import app.jaytune.providers.innertube.requests.player
@@ -125,6 +130,8 @@ import app.jaytune.providers.sponsorblock.SponsorBlock
 import app.jaytune.providers.sponsorblock.models.Action
 import app.jaytune.providers.sponsorblock.models.Category
 import app.jaytune.providers.sponsorblock.requests.segments
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -156,7 +163,15 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeout
 import kotlinx.coroutines.yield
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONArray
+import org.json.JSONObject
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.TimeUnit
 import java.io.IOException
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.milliseconds
@@ -1329,7 +1344,10 @@ class PlayerService : InvincibleService(), Player.Listener, PlaybackStatsListene
             cache: Cache,
             chunkLength: Long? = DEFAULT_CHUNK_LENGTH,
             findMediaItem: suspend (videoId: String) -> MediaItem? = { null },
-            uriCache: UriCache<String, Long?> = UriCache()
+            uriCache: UriCache<String, Pair<Long?, Map<String, String>>> = UriCache(),
+            failedStreamClients: MutableSet<String> = java.util.concurrent.ConcurrentHashMap.newKeySet<String>(),
+            lastInnertubeClientKey: java.util.concurrent.atomic.AtomicReference<String?> =
+                java.util.concurrent.atomic.AtomicReference()
         ): DataSource.Factory = ResolvingDataSource.Factory(
             ConditionalCacheDataSourceFactory(
                 cacheDataSourceFactory = cache.readOnlyWhen { PlayerPreferences.pauseCache }.asDataSource,
@@ -1340,16 +1358,26 @@ class PlayerService : InvincibleService(), Player.Listener, PlaybackStatsListene
             val mediaId = dataSpec.key?.removePrefix("https://youtube.com/watch?v=")
                 ?: error("A key must be set")
 
-            fun DataSpec.ranged(contentLength: Long?) = contentLength?.let {
-                if (chunkLength == null) return@let null
-
-                val start = dataSpec.uriPositionOffset
-                val length = (contentLength - start).coerceAtMost(chunkLength)
-                val rangeText = "$start-${start + length}"
-
-                this.subrange(start, length)
-                    .withAdditionalHeaders(mapOf("Range" to "bytes=$rangeText"))
-            } ?: this
+            /**
+             * Limits a request to one cacheable chunk while preserving the current
+             * Media3 position. DefaultHttpDataSource then emits the matching HTTP
+             * Range header itself.
+             *
+             * [DataSpec.uriPositionOffset] is normally zero for a full remote
+             * resource, so it must not be used as the position of later chunks.
+             */
+            fun DataSpec.ranged(contentLength: Long?) = when {
+                // Android VR URLs may accept the first byte range and reject the
+                // next cache-sized request with 403. Keep one continuous upstream
+                // request for this native profile, while CacheDataSource still
+                // writes the received bytes locally.
+                uri.getQueryParameter("c")?.startsWith("ANDROID_VR", ignoreCase = true) == true -> this
+                contentLength == null || chunkLength == null || position >= contentLength -> this
+                else -> subrange(
+                    /* offset = */ 0L,
+                    /* length = */ (contentLength - position).coerceAtMost(chunkLength)
+                )
+            }
 
             if (
                 dataSpec.isLocal || (
@@ -1358,42 +1386,146 @@ class PlayerService : InvincibleService(), Player.Listener, PlaybackStatsListene
                         /* position = */ dataSpec.position,
                         /* length = */ chunkLength
                     )
-                )
+                    )
             ) dataSpec
             else uriCache[mediaId]?.let { cachedUri ->
                 dataSpec
                     .withUri(cachedUri.uri)
-                    .ranged(cachedUri.meta)
+                    .withAdditionalHeaders(cachedUri.meta.second)
+                    .ranged(cachedUri.meta.first)
             } ?: run {
-                val body = runBlocking(Dispatchers.IO) {
-                    Innertube.player(
-                        body = PlayerBody(videoId = mediaId),
-                        useAntiThrottle = PlayerPreferences.useAntiThrottleParams
+                // Mint an anonymous Web PO Token before the client sequence. The
+                // token is harmless for native clients and is attached only when
+                // Player.kt reaches the WEB / WEB_REMIX profile.
+                // Keep one Web context for the entire playback resolution.
+                // Calling the getter repeatedly creates fresh Context copies, which
+                // lose the visitor data learned from ytcfg and make native/VISIONOS
+                // fallbacks look like unrelated bot sessions to YouTube.
+                val playbackWebContext = InnerTubeContext.DefaultWebToken
+                val playbackVisitorData = runBlocking(Dispatchers.IO) {
+                    playbackWebContext.client.getConfiguration()
+                    playbackWebContext.client.visitorData
+                }
+                val poTokens = runBlocking(Dispatchers.IO) {
+                    BotGuardTokenGenerator.mintToken(
+                        videoId = mediaId,
+                        sessionId = playbackVisitorData
                     )
-                }?.getOrNull()
-                val youtubeFormat = body?.streamingData?.highestQualityFormat
+                }
+                // A response with signatureCipher is not yet a playable stream. ArchiveTune
+                // advances through its client list when deciphering fails; do the same here
+                // before treating yt-dlp as the final fallback.
+                val excludedForThisResolution = failedStreamClients.toMutableSet()
+                var body: PlayerResponse? = null
+                var directFormat: PlayerResponse.StreamingData.AdaptiveFormat? = null
+                var directUrl: String? = null
 
-                val info = runCatching {
-                    Dependencies.runDownload(mediaId)
-                }.onFailure {
-                    logger.error("yt-dlp exception for $mediaId", it)
-                }.mapCatching {
-                    logger.info("yt-dlp raw response: $it")
-                    YouTubeDLResponse.fromString(it)
-                }.onFailure {
-                    logger.error("Failed to parse yt-dlp response", it)
-                }.getOrNull()
+                while (directUrl == null) {
+                    val candidateBody = runBlocking(Dispatchers.IO) {
+                        Innertube.player(
+                            body = PlayerBody(videoId = mediaId),
+                            visitorData = playbackVisitorData,
+                            poToken = poTokens?.playerToken,
+                            excludedClientKeys = excludedForThisResolution
+                        )
+                    }?.getOrNull() ?: break
 
-                logger.info("yt-dlp result: requested ID = $mediaId, returned ID = ${info?.id}, url = ${info?.url}")
+                    val candidateFormat = candidateBody.streamingData?.highestQualityFormat
+                    val candidateContext = candidateBody.context ?: InnerTubeContext.DefaultWebToken
+                    val shouldSkipCipheredWebCandidate =
+                        candidateFormat?.signatureCipher != null &&
+                            candidateContext.client.requiresServiceIntegrity() &&
+                            poTokens?.playerToken.isNullOrBlank()
+                    if (shouldSkipCipheredWebCandidate) {
+                        val failedClient = "${candidateContext.client.clientName}@${candidateContext.client.clientVersion}"
+                        excludedForThisResolution.add(failedClient)
+                        logger.warn(
+                            "Skipping ciphered $failedClient stream because no GVS PoToken is available"
+                        )
+                        continue
+                    }
+                    val candidateUrl = candidateFormat?.let { format ->
+                        runBlocking(Dispatchers.IO) {
+                            format.findUrl(
+                                context = candidateContext,
+                                videoId = mediaId,
+                                gvsPoToken = poTokens?.playerToken,
+                            )
+                        }
+                    }
 
-                val useYtDlp = info?.id == mediaId && info.url != null
+                    if (candidateFormat != null && candidateUrl != null) {
+                        body = candidateBody
+                        directFormat = candidateFormat
+                        directUrl = candidateUrl
+                        break
+                    }
 
-                if (useYtDlp) {
-                    //if (info?.id != mediaId) throw VideoIdMismatchException()
+                    val failedClient = candidateBody.context?.client
+                        ?.let { "${it.clientName}@${it.clientVersion}" }
+                        ?: break
+                    if (!excludedForThisResolution.add(failedClient)) break
+
+                    logger.warn(
+                        "Could not decipher stream from $failedClient; trying next InnerTube client"
+                    )
+                }
+                if (directFormat != null && directUrl != null) {
+                    val client = body?.context?.client
+                    val clientKey = client?.let { "${it.clientName}@${it.clientVersion}" }
+                    val headers = buildMap {
+                        client?.userAgent?.let { put("User-Agent", it) }
+                        client?.referer?.let { referer ->
+                            put("Referer", referer)
+                            put(
+                                "Origin",
+                                if (referer.contains("music.youtube.com")) {
+                                    "https://music.youtube.com"
+                                } else {
+                                    "https://www.youtube.com"
+                                }
+                            )
+                        }
+                    }
+                    // `findUrl` has already performed ArchiveTune-style GVS
+                    // finalization for every URL-resolution branch.  Do not append
+                    // another token here: VISIONOS/native URLs intentionally remain
+                    // token-free and web/TV URLs already contain `pot` when needed.
+                    val uri = directUrl.toUri()
+
+                    lastInnertubeClientKey.set(clientKey)
+                    logger.info("Using Innertube stream from $clientKey")
+                    uriCache.push(
+                        key = mediaId,
+                        meta = directFormat.contentLength to headers,
+                        uri = uri
+                    )
+
+                    dataSpec
+                        .withUri(uri)
+                        .withAdditionalHeaders(headers)
+                        .ranged(directFormat.contentLength)
+                } else {
+                    // yt-dlp is now a true last resort. A valid InnerTube stream
+                    // is tested first, then a 403 advances to the next client.
+                    lastInnertubeClientKey.set(null)
+                    val info = runCatching {
+                        Dependencies.runDownload(mediaId)
+                    }.onFailure {
+                        logger.error("yt-dlp exception for $mediaId", it)
+                    }.mapCatching {
+                        logger.info("yt-dlp raw response: $it")
+                        YouTubeDLResponse.fromString(it)
+                    }.onFailure {
+                        logger.error("Failed to parse yt-dlp response", it)
+                    }.getOrNull() ?: throw UnplayableException()
+
+                    logger.info("yt-dlp result: requested ID = $mediaId, returned ID = ${info.id}, url = ${info.url}")
+                    if (info.id != mediaId || info.url == null) throw UnplayableException()
+
                     val format = info.formats?.firstOrNull { it.formatId == info.formatId }
                     val uri = runCatching { info.url.toUri() }.getOrNull()
                         ?: throw UnplayableException()
-
                     val mediaItem = runCatching {
                         runBlocking(Dispatchers.IO) { findMediaItem(mediaId) }
                     }.getOrNull()
@@ -1405,11 +1537,11 @@ class PlayerService : InvincibleService(), Player.Listener, PlaybackStatsListene
                                 Format(
                                     songId = mediaId,
                                     itag = info.formatId?.toIntOrNull(),
-                                    mimeType = youtubeFormat?.mimeType,
+                                    mimeType = null,
                                     bitrate = format?.abr?.let { it * 1000 }?.toLong(),
-                                    loudnessDb = body?.playerConfig?.audioConfig?.normalizedLoudnessDb,
+                                    loudnessDb = null,
                                     contentLength = info.fileSize,
-                                    lastModified = youtubeFormat?.lastModified
+                                    lastModified = null
                                 )
                             )
                         }
@@ -1417,31 +1549,28 @@ class PlayerService : InvincibleService(), Player.Listener, PlaybackStatsListene
 
                     uriCache.push(
                         key = mediaId,
-                        meta = info.fileSize,
+                        meta = info.fileSize to info.httpHeaders,
                         uri = uri
                     )
 
                     dataSpec
                         .withUri(uri)
+                        .withAdditionalHeaders(info.httpHeaders)
                         .ranged(info.fileSize)
-
-                } else {
-                    logger.warn("yt-dlp failed for $mediaId, falling back to Innertube")
-
-                    val uri = youtubeFormat?.url?.toUri()
-                        ?: throw UnplayableException()
-
-                    uriCache.push(
-                        key = mediaId,
-                        meta = youtubeFormat.contentLength,
-                        uri = uri
-                    )
-
-                    dataSpec
-                        .withUri(uri)
-                        .ranged(youtubeFormat.contentLength)
                 }
             }
+        }.retryIf(maxRetries = 5, exponential = false) { error ->
+            if (error.findCause<InvalidResponseCodeException>()?.responseCode == 403) {
+                // A client can return a syntactically valid URL that Googlevideo
+                // rejects. Exclude it and resolve the current position with the
+                // next client rather than retrying the same Android VR URL.
+                val failedClient = lastInnertubeClientKey.getAndSet(null)
+                    ?: return@retryIf false
+                failedStreamClients += failedClient
+                logger.warn("Googlevideo rejected $failedClient; trying next InnerTube client")
+                uriCache.clear()
+                true
+            } else false
         }.handleUnknownErrors {
             uriCache.clear()
         }

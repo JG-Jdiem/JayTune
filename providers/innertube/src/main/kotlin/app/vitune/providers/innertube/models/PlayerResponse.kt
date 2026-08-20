@@ -1,7 +1,9 @@
 package app.jaytune.providers.innertube.models
 
 import app.jaytune.providers.innertube.Innertube
+import app.jaytune.providers.innertube.NewPipeUtils
 import kotlinx.serialization.Serializable
+import app.jaytune.android.morideobfuscator.MoriCipherRuntime
 import kotlinx.serialization.Transient
 
 @Serializable
@@ -74,8 +76,44 @@ data class PlayerResponse(
             val url: String?,
             val signatureCipher: String?
         ) {
-            suspend fun findUrl(context: Context) =
-                url ?: signatureCipher?.let { Innertube.decodeSignatureCipher(context, it) }
+            /**
+             * Mirrors ArchiveTune's branch-independent URL finalization:
+             * direct URLs, Mori-deciphered URLs and NewPipe-deciphered URLs all
+             * receive the same optional GVS token after their `n`/signature work.
+             */
+            suspend fun findUrl(
+                context: Context,
+                videoId: String,
+                gvsPoToken: String? = null,
+            ): String? {
+                val resolvedUrl = url?.let { directUrl ->
+                    MoriCipherRuntime.transformNParameter(videoId, directUrl)
+                        .recoverCatching { NewPipeUtils.transformNParameter(videoId, directUrl).getOrThrow() }
+                        .getOrDefault(directUrl)
+                } ?: signatureCipher?.let { cipher ->
+                    Innertube.decodeSignatureCipher(
+                        context = context,
+                        videoId = videoId,
+                        cipher = cipher,
+                    )
+                }
+
+                return resolvedUrl?.appendGvsPoToken(
+                    context = context,
+                    gvsPoToken = gvsPoToken,
+                )
+            }
+
+            private fun String.appendGvsPoToken(
+                context: Context,
+                gvsPoToken: String?,
+            ): String {
+                if (!context.client.requiresServiceIntegrity()) return this
+                val token = gvsPoToken?.takeIf(String::isNotBlank) ?: return this
+                if (contains("pot=")) return this
+
+                return this + if (contains("?")) "&pot=$token" else "?pot=$token"
+            }
         }
     }
 

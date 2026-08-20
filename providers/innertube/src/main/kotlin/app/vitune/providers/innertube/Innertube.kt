@@ -6,6 +6,7 @@ import app.jaytune.providers.innertube.models.NavigationEndpoint
 import app.jaytune.providers.innertube.models.Runs
 import app.jaytune.providers.innertube.models.Thumbnail
 import app.jaytune.providers.utils.runCatchingCancellable
+import app.jaytune.android.morideobfuscator.MoriCipherRuntime
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.HttpResponseValidator
@@ -42,6 +43,15 @@ internal val json = Json {
 
 object Innertube {
     private var javascriptChallenge: JavaScriptChallenge? = null
+
+    /**
+     * Modern `player_es6` scripts can expose a valid signature timestamp while
+     * not matching the legacy JavaScript-function regexes below.  Cache the
+     * bootstrap attempt and timestamp separately so every stream fallback does
+     * not reload Music and trigger a Google abuse/consent loop.
+     */
+    private var javascriptBootstrapAttempted = false
+    private var cachedSignatureTimestamp: String? = null
 
     private val OriginInterceptor = createClientPlugin("OriginInterceptor") {
         client.sendPipeline.intercept(HttpSendPipeline.State) {
@@ -108,7 +118,9 @@ object Innertube {
     )
 
     private suspend fun getJavaScriptChallenge(context: Context): JavaScriptChallenge? {
-        if (javascriptChallenge != null) return javascriptChallenge
+        javascriptChallenge?.let { return it }
+        if (javascriptBootstrapAttempted) return null
+        javascriptBootstrapAttempted = true
 
         context.client.getConfiguration()
         val jsUrl = context.client.jsUrl ?: return null
@@ -126,6 +138,8 @@ object Innertube {
             ?.value
             ?.trim()
             ?.takeIf { it.isNotBlank() } ?: return null
+        cachedSignatureTimestamp = timestamp
+
         val functionName = regexes.firstNotNullOfOrNull { regex ->
             regex
                 .find(sourceFile)
@@ -146,19 +160,35 @@ object Innertube {
         ).also { javascriptChallenge = it }
     }
 
-    suspend fun decodeSignatureCipher(context: Context, cipher: String): String? = runCatchingCancellable {
-        val params = parseQueryString(cipher)
-        val signature = params["s"] ?: return@runCatchingCancellable null
-        val signatureParam = params["sp"] ?: return@runCatchingCancellable null
-        val url = params["url"] ?: return@runCatchingCancellable null
+    suspend fun decodeSignatureCipher(
+        context: Context,
+        videoId: String,
+        cipher: String,
+    ): String? {
+        val moriResolution = MoriCipherRuntime.resolveStreamUrl(videoId, cipher)
+        moriResolution.exceptionOrNull()?.let { failure ->
+            logger.error("MoriCipher could not decode signatureCipher for videoId=$videoId: ${failure.message}", failure)
+        }
+        val newPipeResolution = NewPipeUtils.resolveSignatureCipher(videoId, cipher)
+        newPipeResolution.exceptionOrNull()?.let { failure ->
+            logger.error("NewPipe could not decode signatureCipher for videoId=$videoId: ${failure.message}", failure)
+        }
+        return moriResolution.getOrNull()
+            ?: newPipeResolution.getOrNull()
+            ?: runCatchingCancellable {
+                val params = parseQueryString(cipher)
+                val signature = params["s"] ?: return@runCatchingCancellable null
+                val signatureParam = params["sp"] ?: return@runCatchingCancellable null
+                val url = params["url"] ?: return@runCatchingCancellable null
 
-        val actualSignature = getJavaScriptChallenge(context)?.decode(signature)
-            ?: return@runCatchingCancellable null
-        "$url&$signatureParam=$actualSignature"
-    }?.onFailure { it.printStackTrace() }?.getOrNull()
+                val actualSignature = getJavaScriptChallenge(context)?.decode(signature)
+                    ?: return@runCatchingCancellable null
+                "$url&$signatureParam=$actualSignature"
+            }?.onFailure { it.printStackTrace() }?.getOrNull()
+    }
 
     suspend fun getSignatureTimestamp(context: Context): String? = runCatchingCancellable {
-        getJavaScriptChallenge(context)?.timestamp
+        cachedSignatureTimestamp ?: getJavaScriptChallenge(context)?.timestamp
     }?.onFailure { it.printStackTrace() }?.getOrNull()
 
     private const val API_KEY = "AIzaSyC9XL3ZjWddXya6X74dJoCTL-WEYFDNX30"

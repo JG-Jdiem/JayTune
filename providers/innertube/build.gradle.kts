@@ -7,6 +7,8 @@ plugins {
 dependencies {
     implementation(projects.ktorClientBrotli)
     implementation(projects.providers.common)
+    implementation(projects.morideobfuscator)
+    implementation(libs.newpipe.extractor)
 
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.okhttp)

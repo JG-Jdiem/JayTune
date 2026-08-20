@@ -20,7 +20,7 @@ android {
     defaultConfig {
         applicationId = appId
 
-        minSdk = 24
+        minSdk = 26
         targetSdk = 36
         versionCode = System.getenv("ANDROID_VERSION_CODE")?.toIntOrNull() ?: 17
         versionName = project.version.toString()
@@ -165,6 +165,7 @@ dependencies {
 
     implementation(libs.exoplayer)
     implementation(libs.exoplayer.workmanager)
+    implementation(libs.media3.datasource.okhttp)
     implementation(libs.media3.session)
     implementation(libs.media)
 
@@ -187,6 +188,7 @@ dependencies {
 
     implementation(projects.providers.github)
     implementation(projects.providers.innertube)
+    implementation(projects.morideobfuscator)
     implementation(projects.providers.kugou)
     implementation(projects.providers.lrclib)
     implementation(projects.providers.piped)
